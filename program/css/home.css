@@ -1,0 +1,109 @@
+/*the menu nav bar start ------->*/
+/* #020606 #244D3D #37906C #5CC6A5 底色#A7DAD8 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Noto+Serif+TC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
+
+body {
+	font-family: Barlow, Noto Sans TC;
+	font-size: 12px;
+	letter-spacing: 3px;
+	margin: 0px;
+	overflow-x: hidden;
+}
+.menu {
+	position: relative;
+	width: 100%;
+	display: flex;
+	background: #A7DAD8;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
+}
+.menu li {
+	float: left;
+	list-style: none;
+	margin: 0px 50px 0px 0px;
+	font-size: 16px;
+}
+.menu li a {
+	text-decoration: none;
+	color: rgb(146, 151, 150);
+	transition: color linear 0.15s;
+	cursor: pointer;
+}
+.menu .menu-logo {
+	position: relative;	
+	margin: 0 auto;
+	padding: 10px 10px 10px 10px;
+}
+.menu .menu-logo a {
+	color: #fff;
+	text-decoration: none;
+}
+.menu a:hover, .menu .current-active a {
+	
+}
+.toggle-nav, .leftmenu {
+	display: none;
+}
+.menucontainer {
+	display: flex;
+}
+.toggle-nav {
+	display: block;
+	position: absolute;
+	left: 1%;
+	color: #ffffff;
+	text-decoration: none;
+	line-height: 35px;
+	font-size: 20px;
+}
+.menu ul {
+	display: none;
+}
+.closebtn {
+	position: relative;
+	margin: 16px;
+	left: 80%;
+	width: 12px;
+	font-size: 1.5em;
+}
+.closebtn:hover {
+	cursor: pointer;
+	color: #648281;
+}
+.leftmenu {
+	display: block;
+	background-color: #A7DAD8B0;
+	color: #fff;
+	height: 100%;
+	width: 15vw;
+	z-index: 1;
+	position: fixed;
+	left: -100%;
+	transition: all 1s;
+}
+.leftmenu.active {
+	position: fixed;
+	top: 0;
+	left: 0%;
+	transition: all 1s;
+}
+.leftul li {
+	list-style: none;
+	margin: 35px auto;
+	font-size: 15px;
+	letter-spacing: 3px;
+	transition: .5s;
+}
+.leftul li.current-active, .leftul li:hover {
+	color: #fff;
+	border-left: 5px solid #fff;
+	padding-left: 10px;
+}
+.leftul li:hover {
+	cursor: pointer;
+}
+
+.leftul li a {
+    color: #fff;
+    text-decoration: none;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="css/home.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<title>食安餐廳系統</title>
+<div class="menucontainer">
+	<div class="leftmenu">
+		<div class="closebtn">X</div>
+		<ul id="menuUl" class="leftul">
+			<li class="current-active"><a href="map.html" target="imain">home</a></li>
+			<li><a href="about.html" target="imain">About</a></li>
+			<li><a href="news.html" target="imain">news</a></li>
+			<li><a href="green.html" target="imain">Green restaurant</a></li>
+		</ul>
+	</div>
+	<nav class="menu"><a id="menubtn" class="toggle-nav" href="#">☰</a>
+		<div class="menu-logo"><a href="home.html">Name</a></div>
+	</nav>
+</div>
+
+<script type="text/javascript">
+	$('#menubtn').click(function () {
+        $('.leftmenu').toggleClass('active');
+    })
+
+    $('#menuUl li').click(function () {
+        $(this).parent().find('li').each(function () {
+            if ($(this).hasClass('current-active')) {
+                $(this).toggleClass('current-active');
+            }
+        })
+        $(this).toggleClass('current-active');
+    })
+
+    $('.closebtn').click(function () {
+        $('.leftmenu').toggleClass('active');
+    })
+</script>
+</head>
+
+<body>
+    <iframe src="map.html" name="imain" style="position: absolute;width: 100vw;height: 94.7vh;border: none;"></iframe>
+</body>
+</html>
