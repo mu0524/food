@@ -1,12 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Noto+Serif+TC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
 
+
 body {
-	font-family: Barlow, Noto Sans TC;
-	font-size: 12px;
-	letter-spacing: 3px;
 	margin: 0px;
 	overflow-x: hidden;
-    background-color: #ddd;
-    text-align: center;
+    background-color: #FDFDFD;
+	word-wrap: break-word;
 }
+
+.main {
+	position: absolute;
+	width: 98.8vw;
+	height: 100vh;
+	font-size: 12px;
+	font-family: Barlow, Noto Sans TC;
+	letter-spacing: 3px;
+	line-height: 180%;
+	color: #383D31;
+	text-align: center;
+	padding: 0 10px;
+	overflow: auto;
+	overflow-x: hidden;
+	scrollbar-width: thin;
+}
+
+.new-link {
+	position: relative;
+	left: calc(20% - 5px);
+	width: 60vw;
+	height: 30vh;
+	background: #cf7474;
+}
+
+.new-link table{
+	width: 40vw;
+	height: 15vh;
+	border: 1px solid #000;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.content {
+	position: absolute;
+	width: 99vw;
+	background: #ddd;
+}
+
+
+/* 卷軸底色 */
+::-webkit-scrollbar { width:3px; background-color:#fff;}
+/* 卷軸拉的軸軌的顏色 */
+::-webkit-scrollbar-thumb:vertical {background-color:#ddd;}

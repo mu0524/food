@@ -3,10 +3,49 @@
 
 body {
 	font-family: Barlow, Noto Sans TC;
-	font-size: 12px;
-	letter-spacing: 3px;
 	margin: 0px;
 	overflow-x: hidden;
-    background-color: #ddd;
-    text-align: center;
+}
+
+.map {
+	width: 100vw;
+	height: 100vh;
+	background-color: #ddd;
+}
+
+.search {
+	position: absolute;
+	width: 20vw;
+	height: 10vh;
+	background-color: #00000020;
+	left: 79%;
+	top: 0;
+	color: #fff;
+	text-align: left;
+	font-size: 13px;
+	padding: 10px;
+	transition: 1.5s;
+}
+
+.search:hover {
+	background-color: #00000050;
+}
+
+#search-restaurant {
+    border: none;
+    width: 16vw;
+    height: 4vh;
+    font-size: 13px;
+    font-family: Noto Sans TC;
+	letter-spacing: 3px;
+	padding: 0 5px;
+}
+
+.class-restaurant {
+	position: absolute;
+	width: 16vw;
+	height: 3vh;
+	background-color: #b65555;
+	top: 53%;
+	padding: 5px;
 }

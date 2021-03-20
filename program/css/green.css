@@ -1,12 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Noto+Serif+TC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
 
+/*火狐卷軸*/
+html{
+	scrollbar-width: thin;
+}
+
 body {
-	font-family: Barlow, Noto Sans TC;
-	font-size: 12px;
-	letter-spacing: 3px;
 	margin: 0px;
 	overflow-x: hidden;
-    background-color: #ddd;
-    text-align: center;
+    background-color: #FDFDFD;
+	word-wrap: break-word;
 }
+
+.banner {
+	position: absolute;
+	width: 100vw;
+	height: 49vh;
+	background-color: #666;
+}
+
+.banner img{
+	position: relative;
+	max-height: 49vh;
+	opacity: .5;
+}
+
+.banner-text {
+    z-index: 1;
+	position: absolute;
+	top: 9vw;
+	width: 100vw;
+	text-align: center;
+	line-height: 80%;
+}
+
+.banner-text h1{
+	position: relative;
+	color:#fff;
+	font-size: 40px;
+	font-family: Barlow, Noto Sans TC;
+	letter-spacing: 10px;
+}
+
+.banner-text h2{
+	position: relative;
+	color:#fff;
+	font-size: 15px;
+	font-family: Georgia;
+	font-weight: normal;
+	letter-spacing: 5px;
+}
+
+.content {
+	position: absolute;
+    top: 22vw;
+	width: 99vw;
+	height: auto;
+	font-size: 12px;
+	font-family: Barlow, Noto Sans TC;
+	letter-spacing: 3px;
+	line-height: 180%;
+	color: #383D31;
+	text-align: center;
+	padding: 0 10px;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+/* 卷軸底色 */
+::-webkit-scrollbar { width:3px; background-color:#fff;}
+/* 卷軸拉的軸軌的顏色 */
+::-webkit-scrollbar-thumb:vertical {background-color:#ddd;}
