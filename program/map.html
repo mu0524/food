@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/map.css">
     <title>map</title>
-
 </head>
 <body>
-    <div class="map">
-        地
-
+    <!--地圖-->
+    <div id="map">
         <script src="./keys.js"></script>
          <script>
         let map;
@@ -33,12 +31,17 @@
             s.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAijClAWUOvTwYFF9IwOPD4h2QplJebC1E&callback=initMap`;
         });
     </script>
-        <div class="search">
-            <input id="search-restaurant" type="text" placeholder="搜尋餐廳">
-            <div class="class-restaurant">
-                分類
-            </div>
+    </div>
+
+    <!--搜尋框-->
+    <div class="search">
+        <!--輸入餐廳框框-->
+        <input id="search-restaurant" type="text" placeholder="搜尋餐廳">
+        <!--勾選分類-->
+        <div class="class-restaurant">
+            分類
         </div>
     </div>
+    
 </body>
 </html>

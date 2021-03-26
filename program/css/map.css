@@ -7,11 +7,10 @@ body {
 	overflow-x: hidden;
 }
 
-.map {
-	position: relative;
+#map {
 	width: 100vw;
 	height: 100vh;
-	background-color: #ddd;
+	background-color: #FDFDFD;
 }
 
 .search {
