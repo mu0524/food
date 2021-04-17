@@ -22,28 +22,12 @@
 	</nav>
 </div>
 
-<script type="text/javascript">
-	$('#menubtn').click(function () {
-        $('.leftmenu').toggleClass('active');
-    })
-
-    $('#menuUl li').click(function () {
-        $(this).parent().find('li').each(function () {
-            if ($(this).hasClass('current-active')) {
-                $(this).toggleClass('current-active');
-            }
-        })
-        $(this).toggleClass('current-active');
-    })
-
-    $('.closebtn').click(function () {
-        $('.leftmenu').toggleClass('active');
-    })
-</script>
+<script src="js/home.js"></script>
 </head>
 
 <body>
     <iframe src="./map.html" name="imain" style="position: absolute;width: 97.9vw;height: 91.8vh;border: 10px solid #E4EFEF;border-top: none;
     padding: 7px;"></iframe>
+    
 </body>
 </html>
