@@ -29,7 +29,6 @@ $(function() {
         zoom: 16,
         center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        scrollwheel: false
     };
           
     var mapObj = new google.maps.Map(map, mapOptions);
@@ -37,18 +36,17 @@ $(function() {
     var infoWindow = [];
           
     // 地圖標記
+    //經緯度好像會飄調
     var markerData = [
             {
-                position: new google.maps.LatLng(23.6904173, 120.5289109),
+                position: new google.maps.LatLng(23.689979, 120.529447),
                 title: '測試',
                 content: '我家對面啦',
-                icon: 'https://i.imgur.com/PKdLaxG.png',
             },
             {
                 position: new google.maps.LatLng(23.693625, 120.5274303),
                 title: '萊爾富',
                 content: 'ㄚ就萊爾富',
-                icon: 'https://i.imgur.com/PKdLaxG.png',
             }
     ];
           
@@ -58,7 +56,7 @@ $(function() {
                 position: markerData[i].position,
                 map: mapObj,
                 title: markerData[i].title,
-                icon: markerData[i].icon,
+                icon: 'img/pig.png',
               });
           
               infoWindow[i] = new google.maps.InfoWindow({ // 訊息框

@@ -8,6 +8,7 @@ body {
 	font-size: 12px;
 	letter-spacing: 3px;
 	margin: 0px;
+	padding: 0;
 	overflow-x: hidden;
 }
 .menu {
@@ -33,6 +34,12 @@ body {
 	position: relative;	
 	margin: 0 auto;
 	padding: 10px 10px 10px 10px;
+	height: 2vh;
+}
+
+.menu-logo img {
+	height: 200%;
+	margin: -6px;
 }
 .menu .menu-logo a {
 	color: #fff;
