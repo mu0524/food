@@ -6,8 +6,13 @@ html{
 	scrollbar-width: thin;
 }
 
+* {
+	margin: 0;
+	padding: 0;
+	line-height: 200%;
+}
+
 body {
-	margin: 0px;
 	overflow-x: hidden;
     background-color: #FDFDFD;
 	word-wrap: break-word;
@@ -16,14 +21,17 @@ body {
 .banner {
 	position: absolute;
 	width: 100vw;
-	height: 49vh;
+	height: 45vh;
 	background-color: #666;
 }
 
-.banner img{
+.banner-bg{
 	position: relative;
-	max-height: 49vh;
+	width: 100vw;
+	height: 45vh;
 	opacity: .5;
+	background-image: url('https://upload.cc/i1/2021/03/20/j0i1C9.png');
+	background-size: contain;
 }
 
 .banner-text {
@@ -38,15 +46,16 @@ body {
 .banner-text h1{
 	position: relative;
 	color:#fff;
-	font-size: 40px;
+	font-size: 6vh;
 	font-family: Barlow, Noto Sans TC;
 	letter-spacing: 10px;
+	line-height: 100%;
 }
 
 .banner-text h2{
 	position: relative;
 	color:#fff;
-	font-size: 15px;
+	font-size: 2vh;
 	font-family: Georgia;
 	font-weight: normal;
 	letter-spacing: 5px;

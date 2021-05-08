@@ -6,41 +6,61 @@ html{
 	scrollbar-width: thin;
 }
 
-body {
-	margin: 0px;
-	overflow-x: hidden;
-    background-color: #FDFDFD;
-	word-wrap: break-word;
-}
-
-.content {
-	position: absolute;
-	width: 99vw;
-	height: auto;
-	font-size: 12px;
+* {
+	margin: 0;
+	padding: 0;
 	font-family: Barlow, Noto Sans TC;
 	letter-spacing: 3px;
-	line-height: 180%;
-	color: #383D31;
-	text-align: center;
-	padding: 0 10px;
-	overflow: auto;
-	overflow-x: hidden;
 }
 
 .banner {
-	position: relative;
-	left: calc(25% - 10px);
-	width: 50vw;
-	height: 50vh;
-	line-height: 39vw;
-	border-bottom:1px solid #A7DAD8;
+	width: 100vw;
+	height: 47vh;
+	background-image: url('https://upload.cc/i1/2021/03/20/j0i1C9.png');
+	background-size: contain;
+	opacity: .5;
+	background-color: #666;
 }
 
-.banner img{
-	height: 40vh;
-	border-radius: 50%;
+.banner-title {
+	position: absolute;
+	width: 100%;
+	top: 9vw;
+	text-align: center;
+	z-index: 1;
 }
+
+.banner-title h1 {
+	color: #fff;
+	letter-spacing: 6px;
+	font-family: Barlow, Noto Sans TC;
+}
+.banner-title h6 {
+	color: #fff;
+	letter-spacing: 13px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.slogan {
+	height: 35vh;
+	line-height: 15vw;
+	padding: 5px;
+	margin-bottom: 4vw;
+}
+
+.lead {
+	color: #62592C;
+	text-shadow: 2px 2px 1px #62592C45;
+}
+
+.stu-name {
+	line-height: 200%;
+}
+
+.goal-img {
+	height: 30vh;
+}
+
 
 /* 卷軸底色 */
 ::-webkit-scrollbar { width:3px; background-color:#fff;}
