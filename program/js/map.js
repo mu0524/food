@@ -1,4 +1,4 @@
-function readTextFile(file, callback) {
+/*function readTextFile(file, callback) {
     var rawFile = new XMLHttpRequest();
     rawFile.overrideMimeType("application/json");
     rawFile.open("GET", file, true);
@@ -16,8 +16,10 @@ readTextFile("D:/git_workplace/food/program/pig.json", function(text){
     console.log(data);
 });
 
-//win+r chrome.exe --allow-file-access-from-files
-
+//win+r chrome.exe --allow-file-access-from-files*/
+/*
+import * as myModule from './module.js';
+myModule.Hello();*/
 
 $(function() {
 
@@ -49,7 +51,11 @@ $(function() {
                 content: 'ㄚ就萊爾富',
             }
     ];
-          
+    /*
+    var csv="D:/git_workplace/food/program/pig.csv"
+    var markerData = $.csv.toObjects(csv);
+    console.log(markerData);*/
+
             // 標記在地圖上
             for (i = 0; i< markerData.length; i++) {
               marker[i] = new google.maps.Marker({
