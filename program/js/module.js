@@ -1,3 +1,4 @@
-//function hello(){
-console.log("Hello World!");
-//}
+function welcome(){
+    var hello = 'Welcome here, may I help you ?';
+    console.log(hello);
+}
