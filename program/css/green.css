@@ -9,16 +9,23 @@ html{
 * {
 	margin: 0;
 	padding: 0;
-	line-height: 200%;
-}
-
-body {
-	overflow-x: hidden;
-    background-color: #FDFDFD;
+	font-family: Barlow, Noto Sans TC;
+	letter-spacing: 3px;
 	word-wrap: break-word;
 }
 
-.banner {
+.img-fluid {
+	/* width: 45vw; */
+	width: 980px;
+	height: 460px;
+	background-color: #666;
+}
+
+.goal-img {
+	height: 30vh;
+}
+
+/* .banner-head {
 	position: absolute;
 	width: 100vw;
 	height: 45vh;
@@ -59,22 +66,13 @@ body {
 	font-family: Georgia;
 	font-weight: normal;
 	letter-spacing: 5px;
-}
+} */
 
-.content {
-	position: absolute;
-    top: 22vw;
-	width: 99vw;
-	height: auto;
-	font-size: 12px;
-	font-family: Barlow, Noto Sans TC;
-	letter-spacing: 3px;
-	line-height: 180%;
-	color: #383D31;
-	text-align: center;
-	padding: 0 10px;
-	overflow: auto;
-	overflow-x: hidden;
+.slogan {
+	height: 35vh;
+	line-height: 15vw;
+	padding: 5px;
+	margin-bottom: 4vw;
 }
 
 /* 卷軸底色 */
