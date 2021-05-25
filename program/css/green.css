@@ -1,3 +1,4 @@
+/* 底色#d0ebd9 字#4B534C 淡#D1D1C2 酒紅#5A0217 苺粉#B8837E*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Noto+Serif+TC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
 
@@ -11,8 +12,41 @@ html{
 	padding: 0;
 	font-family: Barlow, Noto Sans TC;
 	letter-spacing: 3px;
-	word-wrap: break-word;
+	color: #4B534C;
 }
+
+body {
+	overflow-x: hidden;
+	
+}
+
+.rounded.mx-auto.d-block {
+	height: 5vh;
+	margin-top: -7px;
+}
+
+.bg-light {
+	background-color: #d0ebd9 !important;
+	box-shadow: 0px 1px 3px #ccc;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: #4b534c60;
+	font-size: 14px;
+	transition: .5s;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+	color: #58735b;
+}
+
+.container-fluid {
+	height: 100%;
+	border: 10px solid #f4fff8;
+	border-top: none;
+    padding: 7px;
+	padding-top: 8vh;
+} 
 
 .img-fluid {
 	/* width: 45vw; */

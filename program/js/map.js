@@ -18,8 +18,8 @@ readTextFile("D:/git_workplace/food/program/pig.json", function(text){
 
 //win+r chrome.exe --allow-file-access-from-files*/
 
-import welcome from './module.js';
-welcome()
+// import welcome from './module.js';
+// welcome()
 
 $(function() {
 
