@@ -13,160 +13,22 @@ html{
 	font-family: Barlow, Noto Sans TC;
 	letter-spacing: 3px;
 	font-size: 12px;
-	color: #4B534C;
 }
 
 body {
 	overflow-x: hidden;
-	
-}
-
-.rounded.mx-auto.d-block {
-	height: 5vh;
-	margin-top: -7px;
+	background-color: #fbfbfb;
 }
 
 .container-fluid {
 	height: 100%;
-	border: 10px solid #f4fff8;
-	border-top: none;
+	border-left: 10px solid #f4fff8;
+	border-right: 10px solid #f4fff8;
     padding: 7px;
 	padding-top: 8vh;
-} 
-
-.bg-light {
-	background-color: #d0ebd9 !important;
-	box-shadow: 0px 1px 3px #ccc;
-}
-
-.navbar-light .navbar-nav .nav-link {
-	color: #4b534c60;
-	font-size: 14px;
-	transition: .5s;
-}
-
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-	color: #58735b;
 }
 
 /* 卷軸底色 */
 ::-webkit-scrollbar { width:3px; background-color:#fff;}
 /* 卷軸拉的軸軌的顏色 */
 ::-webkit-scrollbar-thumb:vertical {background-color:#ddd;}
-
-/* 
-.menu {
-	position: relative;
-	width: 100%;
-	display: flex;
-	background: #A7DAD8;
-	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
-}
-.menu li {
-	float: left;
-	list-style: none;
-	margin: 0px 50px 0px 0px;
-	font-size: 16px;
-}
-.menu li a {
-	text-decoration: none;
-	color: rgb(146, 151, 150);
-	transition: color linear 0.15s;
-	cursor: pointer;
-}
-.menu .menu-logo {
-	position: relative;	
-	margin: 0 auto;
-	padding: 10px 10px 10px 10px;
-	height: 7vh;
-}
-
-
-.menu .menu-logo a {
-	color: #fff;
-	text-decoration: none;
-}
-.menu a:hover, .menu .current-active a {
-	
-}
-.toggle-nav, .leftmenu {
-	display: none;
-}
-.menucontainer {
-	display: flex;
-	height: 7vh;;
-}
-.toggle-nav {
-	display: block;
-	position: absolute;
-	left: 1%;
-	top: 10%;
-	color: #ffffff;
-	text-decoration: none;
-	line-height: 35px;
-	font-size: 25px;
-}
-
-#menubtn:hover {
-	text-decoration: none;
-	color: #fff;
-	opacity: .5;
-}
-
-.menu ul {
-	display: none;
-}
-.closebtn {
-	position: relative;
-	margin: 16px;
-	left: 80%;
-	width: 12px;
-	font-size: 1.5em;
-}
-.closebtn:hover {
-	cursor: pointer;
-	color: #648281;
-}
-.leftmenu {
-	display: block;
-	background-color: #A7DAD8B0;
-	color: #fff;
-	height: 100%;
-	width: 15vw;
-	z-index: 1;
-	position: fixed;
-	left: -100%;
-	transition: all 1s;
-}
-.leftmenu.active {
-	position: fixed;
-	top: 0;
-	left: 0%;
-	transition: all 1s;
-}
-
-.leftul {
-	padding-left: 13%;
-}
-
-.leftul li {
-	list-style: none;
-	margin: 35px auto;
-	font-size: 15px;
-	letter-spacing: 3px;
-	transition: .5s;
-}
-.leftul li.current-active, .leftul li:hover {
-	color: #fff;
-	border-left: 5px solid #fff;
-	padding-left: 10px;
-}
-.leftul li:hover {
-	cursor: pointer;
-}
-
-.leftul li a {
-    color: #fff;
-    text-decoration: none;
-}
-*/

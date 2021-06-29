@@ -12,41 +12,12 @@ html{
 	padding: 0;
 	font-family: Barlow, Noto Sans TC;
 	letter-spacing: 3px;
-	color: #4B534C;
+	font-size: 12px;
 }
 
 body {
 	height: 100%;
 	overflow-x: hidden;
-	
-}
-
-.rounded.mx-auto.d-block {
-	height: 5vh;
-	margin-top: -7px;
-}
-
-.container-fluid {
-	height: 100%;
-	border: 10px solid #f4fff8;
-	border-top: none;
-    padding: 7px;
-	z-index: 1;
-} 
-
-.bg-light {
-	background-color: #d0ebd9 !important;
-	box-shadow: 0px 1px 3px #ccc;
-}
-
-.navbar-light .navbar-nav .nav-link {
-	color: #4b534c60;
-	font-size: 14px;
-	transition: .5s;
-}
-
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-	color: #58735b;
 }
 
 #map {
@@ -58,4 +29,11 @@ body {
 .form-control {
 	width: 20vw;
 	margin-right: 1vw;
+}
+.container-fluid {
+	height: 100%;
+	border-left: 10px solid #f4fff8;
+	border-right: 10px solid #f4fff8;
+    padding: 7px;
+	padding-top: 8vh;
 }
