@@ -10,8 +10,9 @@ html{
 * {
 	margin: 0;
 	padding: 0;
-	font-family: Barlow, Noto Sans TC;
+	/* font-family: Barlow, Noto Sans TC;
 	letter-spacing: 3px;
+	font-size: 12px; */
 }
 
 body {
@@ -20,14 +21,35 @@ body {
 }
 
 .container-fluid {
-	height: 100%;
 	border-left: 10px solid #f4fff8;
 	border-right: 10px solid #f4fff8;
-    padding: 7px;
-	padding-top: 8vh;
 }
 
-.img-fluid {
+.masthead {
+	position: relative;
+	height: 55vh;
+	background-image: url('../img/green-bg.png');
+	background-size: contain;
+	padding: 11rem 0;
+	opacity: .5;
+}
+
+.masthead .masthead-heading {
+	position: relative;
+    font-size: 3rem;
+    font-weight: normal;
+    line-height: 3rem;
+    color: #fff;
+    text-shadow: 3px 3px 0 #000;
+    letter-spacing: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.masthead-subheading {
+	color: #fff;
+}
+
+#green-img {
 	width: 980px;
 	height: 460px;
 	background-color: #666;
@@ -80,12 +102,6 @@ body {
 	letter-spacing: 5px;
 } */
 
-.slogan {
-	height: 35vh;
-	line-height: 15vw;
-	padding: 5px;
-	margin-bottom: 4vw;
-}
 
 /* 卷軸底色 */
 ::-webkit-scrollbar { width:3px; background-color:#fff;}
