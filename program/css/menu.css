@@ -42,9 +42,10 @@
 
 footer {
 	background-color: #d0ebd9;
+	font-family: 'Barlow', 'Noto Sans TC', cursive;
 	z-index: 999;
 }
 
 section {
-	padding: 5rem 0;
+	padding: 9rem 0;
 }

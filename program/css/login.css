@@ -17,16 +17,23 @@ html{
 
 body {
 	overflow-x: hidden;
+	background-color: #fbfbfb;
 }
 
 .container-fluid {
 	border-left: 10px solid #f4fff8;
 	border-right: 10px solid #f4fff8;
+	font-family: Calibri , 'Noto Sans TC', cursive;
+	letter-spacing: .2rem;
+}
+
+.login-box {
+	padding-top: 0rem;
 }
 
 form {
-	width: 50vw;
-	background-color: rgba(0, 0, 0, 0.349);
+	width: 30vw;
+	background-color: #ade4c1;
 	position: relative;
 	margin: 0 auto;
 }

@@ -18,12 +18,17 @@ html{
 body {
 	height: 100%;
 	overflow-x: hidden;
+	background-color: #fbfbfb;
 }
 
 #map {
 	width: 100%;
 	height: 100vh;
-	background-color: #FDFDFD;
+	/* background-color: #FDFDFD; */
+}
+
+.first {
+	padding: 4rem 0;
 }
 
 .form-control {
@@ -34,4 +39,6 @@ body {
 	height: 100%;
 	border-left: 10px solid #f4fff8;
 	border-right: 10px solid #f4fff8;
+	font-family: Calibri , 'Noto Sans TC', cursive;
+	letter-spacing: .2rem;
 }

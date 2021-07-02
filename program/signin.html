@@ -1,43 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>食安餐廳系統-註冊</title>
+	<title>食安餐廳系統</title>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="bootstrap-4.2.1-dist/css/bootstrap.min.css" >
-    <script src="bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/signin.css">
+	<link rel="stylesheet" type="text/css" href="css/menu.css">
 	<script src="js/jquery-3.6.0.js"></script>
-
+	<script src="js/index.js"></script>
+	<script src="bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
+	<!-- icons -->
+	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light align-self-start">
-		<a class="navbar-brand" href="./index.html"><img class="rounded mx-auto d-block" src="img/title img.png"></a>
-		<div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-		  <ul class="navbar-nav">
-			<li class="nav-item">
-			  <a class="nav-link" href="./map.html">地圖</a>
-			</li>
-			<li class="nav-item">
-			  <a class="nav-link" href="./news.html">食安新聞</a>
-			</li>
-			<li class="nav-item">
-			  <a class="nav-link" href="./green.html">綠色餐廳</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="./about.html">關於我們</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="./login.html">登入</a>
-			</li>
-		  </ul>
+<body id="page-top">
+    <nav id="menu" class="navbar navbar-expand-lg fixed-top align-self-start">
+		<a class="navbar-brand" href="#page-top"><img class="w-80 ml-3" src="img/title img.png"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars" style="color: #fff;"></i></button>
+		<div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+			<ul class="navbar-nav text-center">
+				<li class="nav-item"><a class="nav-link" href="./index.html">首頁</a></li>
+				<li class="nav-item"><a class="nav-link" href="./map.html">地圖</a></li>
+				<li class="nav-item"><a class="nav-link" href="./news.html">食安新聞</a></li>
+				<li class="nav-item"><a class="nav-link" href="./green.html">綠色餐廳</a></li>
+				<li class="nav-item"><a class="nav-link" href="./login.html"><i class="fas fa-user"></i></a></li>
+			</ul>
 		</div>
 	</nav>
 
 	<div class="container-fluid">
-		<h1>註冊</h1>
+		<section>
+            <div class="container text-center">
+                <h1>Sign In</h1>
+				<a href="./login.html">登入</a>
+            </div>
+        </section>
+
+		<section class="login-box">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col">
+                    </div>
+                    <div class="col-md-10">
+                        <form class="text-center p-3 rounded">
+							<div class="form-group row mt-5 pt-5">
+								<div class="col-md-2"></div>
+								<label for="UserName" class="col-md-3 col-form-label">Account</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control" id="UserName" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+							  	</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-2"></div>
+								<label for="inputEmail3" class="col-md-3 col-form-label">Email</label>
+								<div class="col-md-6">
+									<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+							  	</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-2"></div>
+							  	<label for="inputPassword3" class="col-md-3 col-form-label">Password</label>
+							  	<div class="col-md-6">
+									<input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+							  	</div>
+							</div>
+							<div class="form-group row">
+							  	<div class="col-md text-center mt-5">
+									<button type="submit" class="btn btn-primary">log in</button>
+							  	</div>
+							</div>
+						</form>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
 	</div>
+
+
+	<footer class="footer py-2">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-4 text-lg-start"></div>
+				<div class="col-lg-4 my-3 my-lg-0"></div>
+				<div class="col-lg-4 text-lg-end text-right">
+					<a class="nav-link" href="./about.html">關於我們</a>
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

@@ -16,19 +16,51 @@ html{
 
 body {
 	overflow-x: hidden;
-}
-
-.rounded.mx-auto.d-block {
-	height: 5vh;
-	margin-top: -7px;
+	background-color: #fbfbfb;
 }
 
 .container-fluid {
 	border-left: 10px solid #f4fff8;
 	border-right: 10px solid #f4fff8;
+	font-family: Calibri , 'Noto Sans TC', cursive;
+	letter-spacing: .2rem;
 }
 
-.banner {
+.masthead {
+	position: relative;
+	height: 55vh;
+	background-image: url('../img/green-bg.png');
+	background-size: contain;
+	padding: 11rem 0;
+	opacity: .5;
+}
+
+.masthead .masthead-heading {
+	position: relative;
+    font-size: 3rem;
+	font-family: 'Barlow', 'Noto Sans TC', cursive;
+    line-height: 3.5rem;
+    color: #fff;
+    text-shadow: 3px 3px 0 #000;
+    letter-spacing: 1rem;
+}
+
+.masthead-subheading {
+	color: #fff;
+	font-family: Calibri, 'Noto Sans TC', cursive;
+	font-size: .8rem;
+	letter-spacing: .4rem;
+}
+
+.goal-img {
+	height: 30vh;
+}
+
+.stu-name {
+	line-height: 200%;
+}
+
+/* .banner {
 	width: 98vw;
 	height: 47vh;
 	background-image: url('https://upload.cc/i1/2021/03/20/j0i1C9.png');
@@ -56,25 +88,16 @@ body {
 	font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.slogan {
-	height: 35vh;
-	line-height: 15vw;
-	padding: 5px;
-	margin-bottom: 4vw;
-}
+
 
 .lead {
 	color: #62592C;
 	text-shadow: 2px 2px 1px #62592C45;
 }
 
-.stu-name {
-	line-height: 200%;
-}
 
-.goal-img {
-	height: 30vh;
-}
+
+ */
 
 
 

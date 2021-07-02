@@ -23,6 +23,38 @@ body {
 .container-fluid {
 	border-left: 10px solid #f4fff8;
 	border-right: 10px solid #f4fff8;
+	font-family: Calibri , 'Noto Sans TC', cursive;
+	letter-spacing: .2rem;
+}
+
+.masthead {
+	position: relative;
+	height: 55vh;
+	background-image: url('../img/green-bg.png');
+	background-size: contain;
+	padding: 11rem 0;
+	opacity: .5;
+}
+
+.masthead .masthead-heading {
+	position: relative;
+    font-size: 3rem;
+	font-family: 'Barlow', 'Noto Sans TC', cursive;
+    line-height: 3.5rem;
+    color: #fff;
+    text-shadow: 3px 3px 0 #000;
+    letter-spacing: 1rem;
+}
+
+.masthead-subheading {
+	color: #fff;
+	font-family: Calibri, 'Noto Sans TC', cursive;
+	font-size: .8rem;
+	letter-spacing: .4rem;
+}
+
+.goal-img {
+	height: 30vh;
 }
 
 /* 卷軸底色 */

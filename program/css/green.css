@@ -10,19 +10,18 @@ html{
 * {
 	margin: 0;
 	padding: 0;
-	/* font-family: Barlow, Noto Sans TC;
-	letter-spacing: 3px;
-	font-size: 12px; */
 }
 
 body {
 	overflow-x: hidden;
-	
+	background-color: #fbfbfb;
 }
 
 .container-fluid {
 	border-left: 10px solid #f4fff8;
 	border-right: 10px solid #f4fff8;
+	font-family: Calibri , 'Noto Sans TC', cursive;
+	letter-spacing: .2rem;
 }
 
 .masthead {
@@ -37,16 +36,18 @@ body {
 .masthead .masthead-heading {
 	position: relative;
     font-size: 3rem;
-    font-weight: normal;
-    line-height: 3rem;
+	font-family: 'Barlow', 'Noto Sans TC', cursive;
+    line-height: 3.5rem;
     color: #fff;
     text-shadow: 3px 3px 0 #000;
     letter-spacing: 1rem;
-    margin-bottom: 1.2rem;
 }
 
 .masthead-subheading {
 	color: #fff;
+	font-family: Calibri, 'Noto Sans TC', cursive;
+	font-size: .8rem;
+	letter-spacing: .4rem;
 }
 
 #green-img {
