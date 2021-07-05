@@ -46,6 +46,13 @@ footer {
 	z-index: 999;
 }
 
+.footer-link {
+    display: flex;
+	padding-left: 0;
+	margin-bottom: 0;
+	list-style: none;
+}
+
 section {
 	padding: 9rem 0;
 }

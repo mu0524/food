@@ -1,0 +1,86 @@
+/* 底色#d0ebd9 字#4B534C 淡#D1D1C2 酒紅#5A0217 苺粉#B8837E*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Noto+Serif+TC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
+
+/*火狐卷軸*/
+html{
+	scrollbar-width: thin;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	overflow-x: hidden;
+	background-color: #fbfbfb;
+}
+
+.container-fluid {
+	border-left: 10px solid #f4fff8;
+	border-right: 10px solid #f4fff8;
+	font-family: Calibri , 'Noto Sans TC', cursive;
+	letter-spacing: .2rem;
+}
+
+.masthead {
+	position: relative;
+	height: 55vh;
+	background-size: contain;
+	padding: 11rem 0;
+	opacity: .5;
+}
+
+.masthead .masthead-heading {
+	position: relative;
+    font-size: 3rem;
+	font-family: 'Barlow', 'Noto Sans TC', cursive;
+    line-height: 3.5rem;
+    color: #73ABAB;
+    text-shadow: 3px 3px 0 #d0ebd9;
+    letter-spacing: 1rem;
+}
+
+.masthead-subheading {
+	color: #73ABAB;
+	font-family: Calibri, 'Noto Sans TC', cursive;
+	font-size: .8rem;
+	letter-spacing: .8rem;
+}
+
+.first {
+    padding-top: 0;
+}
+
+.box {
+    background-color: #fff;
+}
+
+.border {
+    border: 1px solid #d0ebd9;
+}
+
+#user-img {
+    padding: .25rem;
+    border: 1px solid #d0ebd9;
+}
+
+#btn-pwd {
+    background-color: #fff;
+    color: #73ABAB;
+    transition: 1s;
+}
+
+#btn-pwd:hover {
+    background-color: #d0ebd9;
+}
+
+p {
+    line-height: 2.5rem;
+}
+
+/* 卷軸底色 */
+::-webkit-scrollbar { width:3px; background-color:#fff;}
+/* 卷軸拉的軸軌的顏色 */
+::-webkit-scrollbar-thumb:vertical {background-color:#ddd;}

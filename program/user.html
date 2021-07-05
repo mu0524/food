@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="bootstrap-4.2.1-dist/css/bootstrap.min.css" >
-	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/user.css">
 	<link rel="stylesheet" type="text/css" href="css/menu.css">
 	<script src="js/jquery-3.6.0.js"></script>
 	<script src="js/index.js"></script>
@@ -31,30 +31,47 @@
 	</nav>
 
 	<header class="masthead text-center">
-        <div class="masthead-heading mb-1">食間去哪兒</div>
-        <div class="masthead-subheading">English name</div>
+        <div class="masthead-heading mb-1">使用者資訊</div>
+        <div class="masthead-subheading">Information</div>
     </header>
 
 	<div class="container-fluid">
-		<section>
+		<section class="first">
             <div class="container">
-                <div class="row text-center">
-                    <div class="col">
-                        <img class="goal-img" src="img/pic22.jpeg"><br><br>
-                        <h5>做好源頭減量</h5>
-                        <p>不主動提供一次性產品</p>
+                <div class="box1 border p-5 text-center">
+                    <img id="user-img" class="rounded-circle w-25 mb-5" src="./img/hui.png">
+                    <div class="row mb-5">
+                        <div class="col  text-right">
+                            <p><label class="mr-3">暱稱</label></p>
+                            <p><label class="mr-3">帳戶</label></p>
+                            <p><label class="mr-3">密碼</label></p>
+                        </div>
+                        <div class="col text-left">
+                            <p><label>李會澤</label></p> <!-- <input type="text" name="name"> -->
+                            <p><label>pentagon-hui</label></p> <!-- <input type="text" name="name"> -->
+                            <p><a href="#" id="btn-pwd" class="border btn btn-primary btn-sm active" role="button" aria-pressed="true">更改密碼</a></p> <!-- <input type="text" name="name"> -->
+                        </div>
                     </div>
-                    <div class="col">
-                        <img class="goal-img" src="img/pic23.jpeg"><br><br>
-                        <h5>使用在地食材</h5>
-                        <p>優先使用國產食材</p>
+                    
+                    <div class="row">
+                        <div class="col mr-4">
+                            <div class="row">
+                                <div class="col p-5 border mb-5">
+                                    <h3>店家查詢歷史</h3>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col p-5 border">
+                                    <h3>歷史評價</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col p-5 border">
+                            <h3>我的最愛</h3>
+                        </div>
                     </div>
-                    <div class="col">
-                        <img class="goal-img" src="img/pic24.jpeg"><br><br>
-                        <h5>推行惜食點餐</h5>
-                        <p>提供餐點份量調整服務</p>
-                    </div>
+                    
                 </div>
+                
             </div>
         </section>
 	</div>
