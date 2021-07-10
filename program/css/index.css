@@ -1,6 +1,7 @@
 /* 底色#d0ebd9 字#4B534C 淡#D1D1C2 酒紅#5A0217 苺粉#B8837E*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Noto+Serif+TC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
 
 /*火狐卷軸*/
 html{
@@ -29,11 +30,10 @@ body {
 
 .masthead {
 	position: relative;
-	height: 55vh;
-	background-image: url('../img/green-bg.png');
-	background-size: contain;
-	padding: 11rem 0;
-	opacity: .5;
+	background-color: #d0ebd960;
+	padding: 14rem 0;
+	height: 92vh;
+	box-shadow: 0 0 .5rem #eee;
 }
 
 .masthead .masthead-heading {
@@ -53,8 +53,13 @@ body {
 	letter-spacing: .4rem;
 }
 
-.goal-img {
-	height: 30vh;
+h1 {
+	font-size: 3.5rem;
+}
+
+h6.eng {
+	font-size: .8rem;
+	font-family: 'EB Garamond', cursive;
 }
 
 /* 卷軸底色 */
