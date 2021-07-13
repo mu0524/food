@@ -14,6 +14,7 @@ while(num<50):
 #print(sp.h6.text)
 
  js_music = response.json()
+ """
 # 逐层展开字典，获得歌曲列表
  list_music = js_music['Detail']
 
@@ -21,9 +22,11 @@ while(num<50):
  for music in list_music:
     f = open("test.txt",'a',encoding="UTF-8")  
     print("店名:",music['Name'],',地址:',music['Address'],',電話:',music['Phone'])
-    a="店名:{name},地址:{Address},電話:{Phone}\n".format(name=music['Name'],Address=music['Address'],Phone=music['Phone'])
+    a='"店名":{name},"地址":{Address},"電話":{Phone}\n"'.format(name=music['Name'],Address=music['Address'],Phone=music['Phone'])
     
     f.write(a)
     f.seek(0)
     f.close()
     
+"""
+print(js_music)
