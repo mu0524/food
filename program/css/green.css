@@ -50,52 +50,174 @@ body {
 	letter-spacing: .4rem;
 }
 
-.goal-img {
-	height: 30vh;
+.second-text {
+	text-indent: 3rem;
+	font-size: 1.2rem;
+	line-height: 2.5rem;
 }
 
-/* .banner-head {
-	position: absolute;
-	width: 100vw;
-	height: 45vh;
-	background-color: #666;
+.container-first {
+    margin-bottom: 5rem;
+	width: 400px;
 }
 
-.banner-bg{
-	position: relative;
-	width: 100vw;
-	height: 45vh;
-	opacity: .5;
-	background-image: url('https://upload.cc/i1/2021/03/20/j0i1C9.png');
-	background-size: contain;
+.container-second {
+	margin-bottom: 7rem;
 }
 
-.banner-text {
-    z-index: 1;
-	position: absolute;
-	top: 9vw;
-	width: 100vw;
-	text-align: center;
-	line-height: 80%;
+.timeline{
+    position: relative;
+    box-sizing: border-box;
+	margin: 2rem 0;
 }
 
-.banner-text h1{
-	position: relative;
-	color:#fff;
-	font-size: 6vh;
-	font-family: Barlow, Noto Sans TC;
-	letter-spacing: 10px;
-	line-height: 100%;
+.timeline:before{
+    content: '';
+    position: absolute;
+    left: 50.2%;
+    width: 1.5px;
+    height: 100%;
+    background: #d0ebd950;
+    
 }
 
-.banner-text h2{
-	position: relative;
-	color:#fff;
-	font-size: 2vh;
-	font-family: Georgia;
-	font-weight: normal;
-	letter-spacing: 5px;
-} */
+.timeline ul{
+    margin: 0;
+    padding: 0;
+}
+
+.timeline ul li{
+    list-style: none;
+    position: relative;
+    width: 50%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+}
+
+.timeline li:nth-child(odd){
+    float: left;
+    text-align: right;
+    clear: both;
+}
+
+.timeline li:nth-child(even){
+    float: right;
+    text-align: left;
+    clear: both;
+}
+
+/*奇*/
+.timeline li:nth-child(odd):before{
+    content: '';
+    position: absolute;
+    top: 24px;
+    right: -7px;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(125deg, #7bc39c 0%, #fafd96 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 3px(233,33,99,0.2);
+}
+
+/*偶*/
+.timeline li:nth-child(even):before{
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: -3px;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(125deg, #7bc39c 0%, #fafd96 100%);
+    border-radius: 50%;
+    box-sizing: 0 0 0 3px(233,33,99,0.2);
+}
+
+.timeline ul li p{
+    margin: 10px 0 0;
+    padding: 0%;
+}
+
+.timeline ul li .time h4{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.timeline li:nth-child(odd) .time{
+    position: absolute;
+    top: 12px;
+    right: -165px;
+    margin: 0;
+    padding: 8px 16px;
+    background: linear-gradient(to right, #7bc39c 0%, #fafd96 100%);
+	color: #fff;
+	border-radius: 18px;
+	box-shadow: 0 0 0 3px #87c89b50;
+}
+
+.timeline li:nth-child(even) .time{
+    position: absolute;
+    top: 12px;
+    left: -165px;
+    margin: 0;
+    padding: 8px 16px;
+    background: linear-gradient(to right, #7bc39c 0%, #fafd96 100%);
+	color: #fff;
+	border-radius: 18px;
+	box-shadow: 0 0 0 3px #87c89b50;
+}
+
+@media(max-width:1000px){
+    .timeline{
+        width: 100%;
+    }
+}
+@media(max-width:767px){
+    .timeline{
+        width: 100%;
+        padding-bottom: 0px;
+    }
+
+    .timeline:before{
+        left:20px
+    }
+
+	.timeline li:nth-child(odd) .time{
+		top: 12px;
+		right: 0;
+	}
+	
+	.timeline li:nth-child(even) .time{
+		position: absolute;
+		top: 12px;
+		left: -113px;
+	}
+
+    .timeline li:nth-child(old),
+    .timeline li:nth-child(even){
+        width: 100%;
+        text-align: left;
+        padding-left: 50px;
+        padding-bottom: 50px;
+    }
+
+    .timeline li:nth-child(odd):before {
+		left: 16px;
+        right: inherit;
+	}
+
+    .timeline li:nth-child(even):before{
+        left: -148px;
+		right: inherit;
+    }
+	
+    /* .timeline li:nth-child(odd).time,
+    .timeline li:nth-child(even).time{
+        top: -30px;
+        left: 50px;
+        right: inherit;
+    } */
+}
 
 
 /* 卷軸底色 */
