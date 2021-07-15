@@ -30,10 +30,9 @@ body {
 
 .masthead {
 	position: relative;
-	background-color: #d0ebd960;
+	background: linear-gradient(to bottom, #d0ebd960 0%, #d0ebd900 100%);
 	padding: 14rem 0;
 	height: 92vh;
-	box-shadow: 0 0 .5rem #eee;
 }
 
 .masthead .masthead-heading {

@@ -23,7 +23,27 @@ body {
 .container-fluid {
 	border-left: 10px solid #f4fff8;
 	border-right: 10px solid #f4fff8;
+	font-family: Calibri , 'Noto Sans TC', cursive;
+	letter-spacing: .1rem;
 }
+
+.card-body h5 {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.card-body p{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+}
+
+/* .card-text {
+    text-overflow : ellipsis;
+} */
 
 /* 卷軸底色 */
 ::-webkit-scrollbar { width:3px; background-color:#fff;}
