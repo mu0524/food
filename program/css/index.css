@@ -61,6 +61,10 @@ h6.eng {
 	font-family: 'EB Garamond', cursive;
 }
 
+.second {
+	max-width: 1400px;
+}
+
 /* 卷軸底色 */
 ::-webkit-scrollbar { width:3px; background-color:#fff;}
 /* 卷軸拉的軸軌的顏色 */

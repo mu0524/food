@@ -207,8 +207,13 @@ body {
 	}
 
     .timeline li:nth-child(even):before{
-        left: -148px;
+        left: -151px;
 		right: inherit;
+    }
+
+    .container-first , .container-second, .container-third{
+        margin-top: 3rem;
+        width: 250px;
     }
 	
     /* .timeline li:nth-child(odd).time,
