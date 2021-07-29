@@ -17,6 +17,7 @@ html{
 body {
 	overflow-x: hidden;
 	background-color: #fbfbfb;
+	color: #4B534C;
 }
 
 .container-fluid {
@@ -52,52 +53,17 @@ body {
 	letter-spacing: .4rem;
 }
 
-.goal-img {
-	height: 30vh;
-}
-
 .stu-name {
 	line-height: 200%;
 }
 
-/* .banner {
-	width: 98vw;
-	height: 47vh;
-	background-image: url('https://upload.cc/i1/2021/03/20/j0i1C9.png');
-	background-size: contain;
-	opacity: .5;
-	background-color: #666;
+.slogan {
+	font-size: 1.5rem;
+	letter-spacing: .5rem;
+	line-height: 3rem;
+	color: #4B534C;
+	text-shadow: 3px 2px 0 #D0EBD9;
 }
-
-.banner-title {
-	position: absolute;
-	width: 100%;
-	top: 12vw;
-	text-align: center;
-	z-index: 1;
-}
-
-.banner-title h1 {
-	color: #fff;
-	letter-spacing: 6px;
-	font-family: Barlow, Noto Sans TC;
-}
-.banner-title h6 {
-	color: #fff;
-	letter-spacing: 13px;
-	font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-
-
-.lead {
-	color: #62592C;
-	text-shadow: 2px 2px 1px #62592C45;
-}
-
-
-
- */
 
 
 

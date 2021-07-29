@@ -22,14 +22,14 @@
 }
 
 .nav-link {
-	color: #4b534c60;
+	color: #ffffffcc;
 	font-size: .9rem;
 	transition: .5s;
 	letter-spacing: .2rem;
 }
 
 .active {
-    color: #4b534c;
+    color: #58735b;
 }
 
 .nav-link:focus, .nav-link:hover {
@@ -48,9 +48,10 @@ footer {
 
 .footer-link {
     display: flex;
-	padding-left: 0;
+	padding-right: 1rem;
 	margin-bottom: 0;
 	list-style: none;
+	float: right;
 }
 
 section {
