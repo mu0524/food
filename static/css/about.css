@@ -30,7 +30,7 @@ body {
 .masthead {
 	position: relative;
 	height: 55vh;
-	background-image: url('../img/green-bg.png');
+	background-image: url('../images/green-bg.png');
 	background-size: contain;
 	padding: 11rem 0;
 	opacity: .5;
