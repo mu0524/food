@@ -1,4 +1,16 @@
 from flask import Flask, render_template, url_for,redirect
+import  pymongo
+# from bson.objectid import ObjectId
+# import json
+
+
+client = pymongo.MongoClient("mongodb+srv://admin:admin@mytopic.hpirm.mongodb.net/mytopicDB")
+db = client.mytopicDB
+coll = db.twpig #確認資料集
+#coll = db.evaluation
+#coll = db.free
+#coll = db.green
+coll.stats #確認是否連線
 
 app = Flask(__name__)
 
@@ -13,6 +25,20 @@ def maptest():
 @app.route('/news.html')
 def news():
     return render_template('news.html') 
+
+def connectdefult():
+    b=coll.find_one({},{"addr": 1})
+    print(b)
+    addr=b["addr"]
+    #如果獲取的資料為空
+    if len(addr) == 0 :
+        a={'message':"error!"}
+        return jsonify(a)
+    else:
+        a={'message':"success!",'addr':addr}
+        return jsonify(a)
+
+
 
 @app.route('/green.html')
 def green():
