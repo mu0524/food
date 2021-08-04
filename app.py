@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for,redirect, jsonify
-import  pymongo
-import ssl
+# import  pymongo
+# import ssl
 # from bson.objectid import ObjectId
 # import json
 
