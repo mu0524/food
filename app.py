@@ -1,23 +1,11 @@
 from flask import Flask, render_template, url_for,redirect, request, jsonify
-import  pymongo
-import ssl
-# from bson.objectid import ObjectId
-# import json
-
-# #coll = db.evaluation
-# #coll = db.free
-# #coll = db.green
-# coll.stats #確認是否連線
+import dbController
 
 app = Flask(__name__)
 
 #連db
 def connectdefult():
-    client = pymongo.MongoClient("mongodb+srv://admin:admin@mytopic.hpirm.mongodb.net/mytopicDB", ssl=True,ssl_cert_reqs=ssl.CERT_NONE)
-    db = client.mytopicDB
-    coll = db.twpig #確認資料集
-    b = coll.find_one({},{"addr": 1}) #抓資料
-    return b
+    return dbController.selectOneForTest()
     # addr=b["addr"]
     # #如果獲取的資料為空
     # if len(addr) == 0 :
