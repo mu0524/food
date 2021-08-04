@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for,redirect, jsonify
+from flask import Flask, render_template, url_for,redirect, request, jsonify
 # import  pymongo
 # import ssl
 # from bson.objectid import ObjectId
@@ -49,8 +49,12 @@ def green():
 def user():
     return render_template('user.html') 
 
-@app.route('/login')
+@app.route('/login', methods=['POST','GET'])
 def login():
+    if request.method == 'POST':
+        if request.values['login-btn'] == 'login':
+            return render_template('index.html')
+            
     return render_template('login.html') 
 
 @app.route('/signin')
