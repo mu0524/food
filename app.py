@@ -5,13 +5,13 @@ import ssl
 # import json
 
 
-client = pymongo.MongoClient("mongodb+srv://admin:admin@mytopic.hpirm.mongodb.net/mytopicDB", ssl=True,ssl_cert_reqs=ssl.CERT_NONE)
-db = client.mytopicDB
-coll = db.twpig #確認資料集
-#coll = db.evaluation
-#coll = db.free
-#coll = db.green
-coll.stats #確認是否連線
+# client = pymongo.MongoClient("mongodb+srv://admin:admin@mytopic.hpirm.mongodb.net/mytopicDB", ssl=True,ssl_cert_reqs=ssl.CERT_NONE)
+# db = client.mytopicDB
+# coll = db.twpig #確認資料集
+# #coll = db.evaluation
+# #coll = db.free
+# #coll = db.green
+# coll.stats #確認是否連線
 
 app = Flask(__name__)
 
