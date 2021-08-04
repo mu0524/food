@@ -23,17 +23,17 @@ def index():
 def maptest():
     return render_template('map.html') 
 
-def connectdefult():
-    b=coll.find_one({},{"addr": 1})
-    print(b)
-    addr=b["addr"]
-    #如果獲取的資料為空
-    if len(addr) == 0 :
-        a={'message':"error!"}
-        return jsonify(a)
-    else:
-        a={'message':"success!",'addr':addr}
-        return jsonify(a)
+# def connectdefult():
+#     b=coll.find_one({},{"addr": 1})
+#     print(b)
+#     addr=b["addr"]
+#     #如果獲取的資料為空
+#     if len(addr) == 0 :
+#         a={'message':"error!"}
+#         return jsonify(a)
+#     else:
+#         a={'message':"success!",'addr':addr}
+#         return jsonify(a)
 
 
 
