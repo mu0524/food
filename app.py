@@ -53,9 +53,9 @@ def user():
 def login():
     if request.method == 'POST':
         if request.values['login-btn'] == 'login':
-            return render_template('index.html')
-            
-    return render_template('login.html') 
+            return redirect(url_for('index'))
+    else:
+        return render_template('login.html') 
 
 @app.route('/signin')
 def signin():
