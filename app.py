@@ -1,10 +1,11 @@
-from flask import Flask, render_template, url_for,redirect
+from flask import Flask, render_template, url_for,redirect, jsonify
 import  pymongo
+import ssl
 # from bson.objectid import ObjectId
 # import json
 
 
-client = pymongo.MongoClient("mongodb+srv://admin:admin@mytopic.hpirm.mongodb.net/mytopicDB")
+client = pymongo.MongoClient("mongodb+srv://admin:admin@mytopic.hpirm.mongodb.net/mytopicDB", ssl=True,ssl_cert_reqs=ssl.CERT_NONE)
 db = client.mytopicDB
 coll = db.twpig #確認資料集
 #coll = db.evaluation
@@ -18,13 +19,9 @@ app = Flask(__name__)
 def index():
     return render_template('index.html') #return url string 中回傳index.html 做為模板
 
-@app.route('/map.html')
+@app.route('/map')
 def maptest():
     return render_template('map.html') 
-
-@app.route('/news.html')
-def news():
-    return render_template('news.html') 
 
 def connectdefult():
     b=coll.find_one({},{"addr": 1})
@@ -40,23 +37,27 @@ def connectdefult():
 
 
 
-@app.route('/green.html')
+@app.route('/news')
+def news():
+    return render_template('news.html') 
+
+@app.route('/greenresturant')
 def green():
     return render_template('green.html') 
 
-@app.route('/user.html')
+@app.route('/userinfo')
 def user():
     return render_template('user.html') 
 
-@app.route('/login.html')
+@app.route('/login')
 def login():
     return render_template('login.html') 
 
-@app.route('/signin.html')
+@app.route('/signin')
 def signin():
     return render_template('signin.html') 
 
-@app.route('/about.html')
+@app.route('/about')
 def about():
     return render_template('about.html') 
 
