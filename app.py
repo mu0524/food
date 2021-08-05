@@ -1,20 +1,7 @@
 from flask import Flask, render_template, url_for,redirect, request, jsonify
-import dbController
+import dbController as db
 
 app = Flask(__name__)
-
-#連db
-def connectdefult():
-    return dbController.selectOneForTest()
-    # addr=b["addr"]
-    # #如果獲取的資料為空
-    # if len(addr) == 0 :
-    #     a={'message':"error!"}
-    #     return jsonify(a)
-    # else:
-    #     a={'message':"success!",'addr':addr}
-    #     return jsonify(a)
-
 
 @app.route('/')
 def index():
@@ -22,7 +9,7 @@ def index():
 
 @app.route('/map')
 def maptest():
-    return render_template('map.html', name=connectdefult()) #小小測試東西有沒有傳到網頁
+    return render_template('map.html', name=db.selectOneForTest()) #小小測試東西有沒有傳到網頁
 
 @app.route('/news')
 def news():

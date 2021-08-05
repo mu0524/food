@@ -11,6 +11,9 @@ collgre = db.green
 
 #coll.stats #確認是否連線
 
+
 def selectOneForTest():
-    b = collpig.find_one({},{"addr": 1}) #抓資料
+    b = collpig.find() #抓資料
     return b
+
+

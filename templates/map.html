@@ -9,7 +9,6 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/map.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/menu.css">
 	<script src="../static/js/jquery-3.6.0.js"></script>
-	<script src="../static/js/map.js"></script>
 	<script src="../static/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
 	<!-- icons -->
 	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
@@ -39,14 +38,14 @@
 	<div class="container-fluid">
 		<section class="first">
 			<div class="row align-items-center">
+				
 				<div class="col-lg-5 text-center">
-					{{name}}
 					<!-- 搜尋框 -->
 					<div class="form-group">
 						<form class="form-inline">
 							<!--輸入餐廳框框-->
 							<input name="address" class="form-control col-lg-5" type="text" placeholder="搜尋餐廳">
-							<button type="submit" class="btn btn-primary">搜尋</button>
+							<button type="submit" class="btn btn-primary" name="search">搜尋</button>
 						</form>
 					</div>
 				</div>
@@ -64,6 +63,7 @@
 		</section>
 		
 	</div>
+
 	
 	<footer class="footer py-2">
 		<div class="row align-items-center">
@@ -77,5 +77,66 @@
 			</div>
 		</div>
 	</footer>
+
+	<script >
+		//console.log('{{name}}');
+		let map;
+		function initMap() {
+			map = new google.maps.Map(document.getElementById("map"), {
+				center: { 
+					lat: 23.695919378044756, 
+					lng: 120.53353474084176
+				},
+				zoom: 16,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			});
+
+
+			var marker = [];
+    		var infoWindow = [];
+
+			//地標資料處理(這邊會換dbㄉ資料)
+			var markerData = [
+				{
+					position: new google.maps.LatLng(23.6894251, 120.529039), //位置
+					title: '科大傳奇', //名稱
+					content: '我家', //內容
+				},
+
+				{
+					position: new google.maps.LatLng(23.6948919, 120.5275102),
+					title: '萊爾富',
+					content: 'ㄚ就萊爾富',
+				}
+			];
+
+			//跑迴圈新增地標
+			for (i = 0; i< markerData.length; i++) {
+				marker[i] = new google.maps.Marker({
+					position: markerData[i].position,
+					map: map,
+					title: markerData[i].title,
+					icon: './static/images/map-icontest.png',
+					});
+				
+					infoWindow[i] = new google.maps.InfoWindow({ // 按下地標跑出的內容
+					content: '<div class="name">' + markerData[i]['title']+'<br>'+ markerData[i]['content'] + '</div>'
+				});
+
+            	markerEvent(i);
+            }
+            
+            // 標記訊息框
+            function markerEvent(i) {
+              marker[i].addListener('click', function() {
+                infoWindow[i].open(map, marker[i]);
+              });
+            }
+			
+
+		}
+	</script>
+
+
 </body>
 </html>
