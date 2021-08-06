@@ -43,3 +43,16 @@ body {
 	font-family: Calibri , 'Noto Sans TC', cursive;
 	letter-spacing: .2rem;
 }
+
+.map_content{
+	width: 15vw;
+	font-family: Calibri , 'Noto Sans TC', cursive;
+	letter-spacing: 0.2rem;
+	line-height: 1rem;
+}
+
+.map_content_title {
+	font-size: 1rem;
+	color: #316137; /*亂設顏色*/
+	text-decoration: underline;
+}

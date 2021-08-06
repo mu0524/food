@@ -38,7 +38,6 @@
 	<div class="container-fluid">
 		<section class="first">
 			<div class="row align-items-center">
-				
 				<div class="col-lg-5 text-center">
 					<!-- 搜尋框 -->
 					<div class="form-group">
@@ -79,7 +78,8 @@
 	</footer>
 
 	<script >
-		//console.log('{{name}}');
+		
+
 		let map;
 		function initMap() {
 			map = new google.maps.Map(document.getElementById("map"), {
@@ -94,9 +94,36 @@
 
 			var marker = [];
     		var infoWindow = [];
+			var pigdata=[];
+
+
+			console.log('{{data.0.market_name}}') //陣列第一筆資料ㄉmarket_name
+
+			//轉存資料給js使用
+			for (i = 0; i< data.length; i++) {
+				
+			}
+
+			console.log(pigdata); 
+
+			// pigdata = {
+			// 		market_name: '{{data.market_name}}',
+			// 		addr:'{{data.addr}}',
+			// 		context:'{{data.context}}',
+			// 		Latitude:'{{data.Latitude}}',
+			// 		Lontitude: '{{data.Lontitude}}',
+			// 	};
+
+			//測試 console.log(pigdata); 
 
 			//地標資料處理(這邊會換dbㄉ資料)
 			var markerData = [
+				{
+					position: new google.maps.LatLng(pigdata['Latitude'], pigdata['Lontitude']), //位置
+					title: pigdata['market_name'], //名稱
+					content: pigdata['context'], //內容
+				},
+
 				{
 					position: new google.maps.LatLng(23.6894251, 120.529039), //位置
 					title: '科大傳奇', //名稱
@@ -109,6 +136,15 @@
 					content: 'ㄚ就萊爾富',
 				}
 			];
+			
+			//地標圖片，圖片88 我頭會痛死要重調惹QAQ
+			const icons = {
+				pig: "./static/images/pig.png",
+				green:"./static/images/green.png",
+				free:"./static/images/free.png",
+				evaluation:"./static/images/evaluation.png",
+			};
+
 
 			//跑迴圈新增地標
 			for (i = 0; i< markerData.length; i++) {
@@ -116,17 +152,18 @@
 					position: markerData[i].position,
 					map: map,
 					title: markerData[i].title,
-					icon: './static/images/map-icontest.png',
+					icon: icons['pig'], //這邊我先弄豬而已
 					});
 				
-					infoWindow[i] = new google.maps.InfoWindow({ // 按下地標跑出的內容
-					content: '<div class="name">' + markerData[i]['title']+'<br>'+ markerData[i]['content'] + '</div>'
+					infoWindow[i] = new google.maps.InfoWindow({ // 按下地標跑出的內容設定
+					content: '<div class="map_content text-center p-2">' + '<p class="map_content_title">' +markerData[i]['title']+'</p><p>'+ markerData[i]['content'] + '</p>'
+						+'</div>'
 				});
 
             	markerEvent(i);
             }
             
-            // 標記訊息框
+            // 點地標，跑出訊息框
             function markerEvent(i) {
               marker[i].addListener('click', function() {
                 infoWindow[i].open(map, marker[i]);
