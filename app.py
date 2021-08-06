@@ -9,7 +9,8 @@ def index():
 
 @app.route('/map')
 def maptest():
-    return render_template('map.html', data=db.selectOneForTest()) #小小測試東西有沒有傳到網頁
+    data=db.selectOneForTest()
+    return render_template('map.html', data=data,count=len(data)) #小小測試東西有沒有傳到網頁
 
 @app.route('/news')
 def news():

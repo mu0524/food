@@ -39,6 +39,8 @@
 		<section class="first">
 			<div class="row align-items-center">
 				<div class="col-lg-5 text-center">
+					
+
 					<!-- 搜尋框 -->
 					<div class="form-group">
 						<form class="form-inline">
@@ -79,8 +81,8 @@
 
 	<script >
 		
+		let map;//這句貌似不用
 
-		let map;
 		function initMap() {
 			map = new google.maps.Map(document.getElementById("map"), {
 				center: { 
@@ -95,33 +97,37 @@
 			var marker = [];
     		var infoWindow = [];
 			var pigdata=[];
+			var count="{{count}}"
 
-
+			console.log(count)
 			console.log('{{data.0.market_name}}') //陣列第一筆資料ㄉmarket_name
+			
+			pigdata =[
+			//{% for record in data%}
+			 {
+			 		addr:'{{record.addr}}',
+			 		Latitude:'{{record.Latitude}}',
+			 		Lontitude: '{{record.Lontitude}}',
+			 },
+			//{% endfor %}
+			];
 
 			//轉存資料給js使用
-			for (i = 0; i< data.length; i++) {
+			/*for (let i = 0; i< data.length; i++) {
 				
-			}
+			}*/
 
-			console.log(pigdata); 
+			console.log(pigdata[0].addr);
 
-			// pigdata = {
-			// 		market_name: '{{data.market_name}}',
-			// 		addr:'{{data.addr}}',
-			// 		context:'{{data.context}}',
-			// 		Latitude:'{{data.Latitude}}',
-			// 		Lontitude: '{{data.Lontitude}}',
-			// 	};
 
 			//測試 console.log(pigdata); 
 
 			//地標資料處理(這邊會換dbㄉ資料)
 			var markerData = [
 				{
-					position: new google.maps.LatLng(pigdata['Latitude'], pigdata['Lontitude']), //位置
-					title: pigdata['market_name'], //名稱
-					content: pigdata['context'], //內容
+					position: new google.maps.LatLng(pigdata[0]['Latitude'], pigdata[0]['Lontitude']), //位置
+					//title: pigdata['market_name'], //名稱
+					//content: pigdata['context'], //內容
 				},
 
 				{

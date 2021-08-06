@@ -12,8 +12,5 @@ collgre = db.green
 #coll.stats #確認是否連線
 
 def selectOneForTest():
-    data={}
-    data = collpig.find()   #抓資料
-    result = [doc for doc in data] #轉型別，但是他變陣列
-
+    result = list(collpig.find())   #抓資料
     return result
