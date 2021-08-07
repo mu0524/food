@@ -124,11 +124,11 @@
 
 			//地標資料處理(這邊會換dbㄉ資料)
 			var markerData = [
-				{
+				/*{
 					position: new google.maps.LatLng(pigdata[0]['Latitude'], pigdata[0]['Lontitude']), //位置
 					//title: pigdata['market_name'], //名稱
 					//content: pigdata['context'], //內容
-				},
+				},*/
 
 				{
 					position: new google.maps.LatLng(23.6894251, 120.529039), //位置
@@ -142,6 +142,16 @@
 					content: 'ㄚ就萊爾富',
 				}
 			];
+
+			for (let i = 0; i< pigdata.length; i++) {
+					append=[{
+					position: new google.maps.LatLng(pigdata[i]['Latitude'], pigdata[i]['Lontitude']), //位置
+					//title: pigdata['market_name'], //名稱
+					//content: pigdata['context'], //內容
+					content: "地址:"+pigdata[i]['addr']
+					}];
+					markerData=markerData.concat(append)
+			}
 			
 			//地標圖片，圖片88 我頭會痛死要重調惹QAQ
 			const icons = {
