@@ -12,7 +12,7 @@ collgre = db.green
 #coll.stats #確認是否連線
 
 
-def selectOneForTest():
+def selectPigdata():
     result = list(collpig.find())   #抓資料
     result = [ {**item, **{"_id": str(item["_id"])} } for item in result ] #處理 objectId 轉string
     return result

@@ -10,7 +10,7 @@ def index():
 
 @app.route('/map')
 def maptest():
-    data=db.selectOneForTest()
+    data=db.selectPigdata()
     return render_template('map.html', data=data,count=len(data)) #小小測試東西有沒有傳到網頁
 
 @app.route('/news')

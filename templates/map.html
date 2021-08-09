@@ -38,23 +38,23 @@
 	<div class="container-fluid">
 		<section class="first">
 			<div class="row align-items-center">
-				<div class="col-lg-5 text-center">
-					
-
-					<!-- 搜尋框 -->
-					<div class="form-group">
-						<form class="form-inline">
-							<!--輸入餐廳框框-->
-							<input name="address" class="form-control col-lg-5" type="text" placeholder="搜尋餐廳">
-							<button type="submit" class="btn btn-primary" name="search">搜尋</button>
-						</form>
-					</div>
+				<!-- 搜尋框 -->
+				<div class="form-group col-lg">
+					<form class="form-inline">
+						<!--輸入餐廳框框-->
+						<input name="search_addr" class="form-control w-50" type="text" placeholder="搜尋餐廳">
+						<button type="submit" class="btn btn-primary" name="search">搜尋</button>
+					</form>
 				</div>
-				<div class="col-lg-2">
-					<!--分類框-->
-					<div class="class-restaurant">
-						分類
-					</div>
+
+				<!--分類框-->
+				<div class="class-restaurant col-lg-5 text-center">
+					<form>
+						<input class="mr-2" type="checkbox" id="pig_check" onclick="checkbox_select()" checked="checked"><label for="pig_check">台灣豬</label>
+						<input class="mr-2" type="checkbox" id="green_check">綠色餐廳
+						<input class="mr-2" type="checkbox" id="good_check">餐飲業優良等級
+						<input class="mr-2" type="checkbox" id="discount_check">自備餐具折扣
+					</form>
 				</div>
 			</div>
 			
@@ -80,9 +80,32 @@
 	</footer>
 
 	<script >
-		
+		//全域變數
 		let map;
+		var pigdata=[];
 
+		// 地標資料處理
+		pigdata =[
+			//{% for record in data%}
+				{
+					title:'{{record.market_name}}',
+					addr:'{{record.addr}}',
+					Latitude:'{{record.Latitude}}',
+					Lontitude: '{{record.Lontitude}}',
+					context:'{{record.context}}'
+				},
+			//{% endfor %}
+		];
+
+		//地標圖片，圖片88 我頭會痛死要重調惹QAQ
+		const icons = {
+			pig: "./static/images/pig.png",
+			green:"./static/images/green.png",
+			free:"./static/images/free.png",
+			evaluation:"./static/images/evaluation.png",
+		};
+
+		//地圖
 		function initMap() {
 			map = new google.maps.Map(document.getElementById("map"), {
 				center: { 
@@ -93,33 +116,18 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 
-			var pigdata=[];
-			var count="{{count}}";
+			if ( document.getElementById("pig_check").checked == true){
+				setPigMarker()
+			}
+			else{
+			}
+		}
+		
+		var marker = [];
+    	var infoWindow = [];
 
-			//地標資料處理
-			pigdata =[
-			//{% for record in data%}
-				{
-					title:'{{record.market_name}}',
-					addr:'{{record.addr}}',
-					Latitude:'{{record.Latitude}}',
-					Lontitude: '{{record.Lontitude}}',
-					context:'{{record.context}}'
-				},
-			//{% endfor %}
-			];
-
-
-			//地標圖片，圖片88 我頭會痛死要重調惹QAQ
-			const icons = {
-				pig: "./static/images/pig.png",
-				green:"./static/images/green.png",
-				free:"./static/images/free.png",
-				evaluation:"./static/images/evaluation.png",
-			};
-
-			var marker = [];
-    		var infoWindow = [];
+		//豬豬地標
+		function setPigMarker() {
 
 			//跑迴圈新增地標
 			for (let i = 0; i< pigdata.length; i++) {
@@ -128,45 +136,42 @@
 					map: map,
 					title: pigdata[i]['market_name'],
 					icon: icons['pig'], //這邊我先弄豬而已
-					});
+				});
 				
-					infoWindow[i] = new google.maps.InfoWindow({ // 按下地標跑出的內容設定
-					content: '<div class="map_content text-center p-2">' + '<p class="map_content_title">' +pigdata[i]['title']+'</p><p>地址：'+pigdata[i]['addr']+'</p><p>'
+				// 按下地標跑出的內容設定
+				infoWindow[i] = new google.maps.InfoWindow({ 
+					content: '<div class="map_content text-center p-2"><p class="map_content_title">' +pigdata[i]['title']+'</p><p>地址：'+pigdata[i]['addr']+'</p><p>'
 						+pigdata[i]['context'] + '</p></div>'
 				});
 
-            	markerEvent(i);
+				markerEvent(i);
 			}
-			
-			
 
-
-			
-			// for (i = 0; i< markerData.length; i++) {
-			// 	marker[i] = new google.maps.Marker({
-			// 		position: markerData[i].position,
-			// 		map: map,
-			// 		title: markerData[i].title,
-			// 		icon: icons['pig'], //這邊我先弄豬而已
-			// 		});
-				
-			// 		infoWindow[i] = new google.maps.InfoWindow({ // 按下地標跑出的內容設定
-			// 		content: '<div class="map_content text-center p-2">' + '<p class="map_content_title">' +markerData[i]['title']+'</p><p>'+ markerData[i]['content'] + '</p>'
-			// 			+'</div>'
-			// 	});
-
-            // 	markerEvent(i);
-            // }
-            
-            // 點地標，跑出訊息框
+			// 點地標，跑出訊息框
             function markerEvent(i) {
               marker[i].addListener('click', function() {
                 infoWindow[i].open(map, marker[i]);
               });
             }
-			
-
+							
 		}
+
+		// 清除所有地標，我發現清的調，可是圖片還活著ㄚㄚㄚㄚ
+		function deleteMarkers() {
+			setPigMarker(null);
+			marker = [];
+		}
+
+		
+		function checkbox_select(){
+			if ( document.getElementById("pig_check").checked == true){
+				setPigMarker()
+			}
+			else {
+				deleteMarkers()
+			}
+		}
+		
 	</script>
 
 
