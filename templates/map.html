@@ -81,7 +81,7 @@
 
 	<script >
 		
-		let map;//這句貌似不用
+		let map;
 
 		function initMap() {
 			map = new google.maps.Map(document.getElementById("map"), {
@@ -93,66 +93,23 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 
-
-			var marker = [];
-    		var infoWindow = [];
 			var pigdata=[];
-			var count="{{count}}"
+			var count="{{count}}";
 
-			console.log(count)
-			console.log('{{data.0.market_name}}') //陣列第一筆資料ㄉmarket_name
-			
+			//地標資料處理
 			pigdata =[
 			//{% for record in data%}
-			 {
-			 		addr:'{{record.addr}}',
-			 		Latitude:'{{record.Latitude}}',
-			 		Lontitude: '{{record.Lontitude}}',
-			 },
+				{
+					title:'{{record.market_name}}',
+					addr:'{{record.addr}}',
+					Latitude:'{{record.Latitude}}',
+					Lontitude: '{{record.Lontitude}}',
+					context:'{{record.context}}'
+				},
 			//{% endfor %}
 			];
 
-			//轉存資料給js使用
-			/*for (let i = 0; i< data.length; i++) {
-				
-			}*/
 
-			console.log(pigdata[0].addr);
-
-
-			//測試 console.log(pigdata); 
-
-			//地標資料處理(這邊會換dbㄉ資料)
-			var markerData = [
-				/*{
-					position: new google.maps.LatLng(pigdata[0]['Latitude'], pigdata[0]['Lontitude']), //位置
-					//title: pigdata['market_name'], //名稱
-					//content: pigdata['context'], //內容
-				},*/
-
-				{
-					position: new google.maps.LatLng(23.6894251, 120.529039), //位置
-					title: '科大傳奇', //名稱
-					content: '我家', //內容
-				},
-
-				{
-					position: new google.maps.LatLng(23.6948919, 120.5275102),
-					title: '萊爾富',
-					content: 'ㄚ就萊爾富',
-				}
-			];
-
-			for (let i = 0; i< pigdata.length; i++) {
-					append=[{
-					position: new google.maps.LatLng(pigdata[i]['Latitude'], pigdata[i]['Lontitude']), //位置
-					//title: pigdata['market_name'], //名稱
-					//content: pigdata['context'], //內容
-					content: "地址:"+pigdata[i]['addr']
-					}];
-					markerData=markerData.concat(append)
-			}
-			
 			//地標圖片，圖片88 我頭會痛死要重調惹QAQ
 			const icons = {
 				pig: "./static/images/pig.png",
@@ -161,23 +118,45 @@
 				evaluation:"./static/images/evaluation.png",
 			};
 
+			var marker = [];
+    		var infoWindow = [];
 
 			//跑迴圈新增地標
-			for (i = 0; i< markerData.length; i++) {
+			for (let i = 0; i< pigdata.length; i++) {
 				marker[i] = new google.maps.Marker({
-					position: markerData[i].position,
+					position: new google.maps.LatLng(pigdata[i]['Latitude'], pigdata[i]['Lontitude']), //位置
 					map: map,
-					title: markerData[i].title,
+					title: pigdata[i]['market_name'],
 					icon: icons['pig'], //這邊我先弄豬而已
 					});
 				
 					infoWindow[i] = new google.maps.InfoWindow({ // 按下地標跑出的內容設定
-					content: '<div class="map_content text-center p-2">' + '<p class="map_content_title">' +markerData[i]['title']+'</p><p>'+ markerData[i]['content'] + '</p>'
-						+'</div>'
+					content: '<div class="map_content text-center p-2">' + '<p class="map_content_title">' +pigdata[i]['title']+'</p><p>地址：'+pigdata[i]['addr']+'</p><p>'
+						+pigdata[i]['context'] + '</p></div>'
 				});
 
             	markerEvent(i);
-            }
+			}
+			
+			
+
+
+			
+			// for (i = 0; i< markerData.length; i++) {
+			// 	marker[i] = new google.maps.Marker({
+			// 		position: markerData[i].position,
+			// 		map: map,
+			// 		title: markerData[i].title,
+			// 		icon: icons['pig'], //這邊我先弄豬而已
+			// 		});
+				
+			// 		infoWindow[i] = new google.maps.InfoWindow({ // 按下地標跑出的內容設定
+			// 		content: '<div class="map_content text-center p-2">' + '<p class="map_content_title">' +markerData[i]['title']+'</p><p>'+ markerData[i]['content'] + '</p>'
+			// 			+'</div>'
+			// 	});
+
+            // 	markerEvent(i);
+            // }
             
             // 點地標，跑出訊息框
             function markerEvent(i) {
