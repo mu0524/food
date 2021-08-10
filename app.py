@@ -56,10 +56,10 @@ def login():
         email = request.form['email_input']
         pwd = request.form['pwd_input']
         data = db.selectUserInfo(email)
-        if pwd == data[2]:
+        if email == data['email'] & pwd == data['pwd']:
             user = User()
             user.id = email
-            uid = data[0]
+            uid = data['userID']
             login_user(user)
             return redirect(url_for('login'),uid)
         else:

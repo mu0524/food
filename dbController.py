@@ -31,10 +31,7 @@ def selectUser(email):
 #找使用者個人資訊
 def selectUserInfo(email):
     result = colluser.find_one({'email': email})
-    userID = result['userID']
-    email = result['email']
-    password = result['pwd']
-    return userID,email,password
+    return result
 
 #新增使用者
 def insertUser(userID,email,pwd):
