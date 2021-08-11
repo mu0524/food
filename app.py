@@ -1,36 +1,38 @@
-from flask import Flask, render_template, url_for,redirect, request, jsonify, flash
+from flask import Flask, render_template, url_for,redirect, request, flash, session
 from pymongo import message
 import dbController as db
-import os
+import os, bcrypt
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 
 app = Flask(__name__)
-app.secret_key = os.urandom(16).hex()
+app.secret_key = 'dfdb937a11c61ce34b50e3566510c63a'
 
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.session_protection = 'strong'
-login_manager.login_view = 'login'
-login_manager.login_message = '請先登入'
+# login_manager = LoginManager()
+# login_manager.init_app(app)
+# login_manager.session_protection = 'strong'
+# login_manager.login_view = 'login'
+# login_manager.login_message = '請先登入'
 
 
-class User(UserMixin):
-    pass
+# class User(UserMixin):
+#     pass
 
-#確認使用者是否是在我們的合法清單users當中，若沒有，就什麼都不做。
-#若有，就宣告一個我們剛才用UserMixin做出來的物件User()，貼上user標籤，
-#並回傳給呼叫這個函數user_loader()的地方
-@login_manager.user_loader
-def user_loader(email): 
-    users = db.selectUser(email)
-    if email not in users:
-        return
-    user = User()
-    user.id = email
-    return user
+# #確認使用者是否是在我們的合法清單users當中，若沒有，就什麼都不做。
+# #若有，就宣告一個我們剛才用UserMixin做出來的物件User()，貼上user標籤，
+# #並回傳給呼叫這個函數user_loader()的地方
+# @login_manager.user_loader
+# def user_loader(email): 
+#     users = db.selectUser(email)
+#     if email not in users:
+#         return
+#     user = User()
+#     user.id = email
+#     return user
 
 @app.route('/')
 def index():
+    if 'userID' in session:
+        return 'hi ' + session['userID']
     return render_template('index.html') #return url string 中回傳index.html 做為模板
 
 @app.route('/map')
@@ -54,16 +56,25 @@ def user():
 def login():
     if request.method == 'POST': #請求method是post的資料
         email = request.form['email_input']
-        pwd = request.form['pwd_input']
-        data = db.selectUserInfo(email)
-        if email == data['email'] & pwd == data['pwd']:
-            user = User()
-            user.id = email
-            uid = data['userID']
-            login_user(user)
-            return redirect(url_for('login'),uid)
+        login_user = db.selectUser(email)
+        if login_user :
+            if bcrypt.hashpw(request.form['pwd_input'].encode('utf-8'), login_user['pwd']) == login_user['pwd']:
+                session['email'] = email
+                session['userID'] = login_user['userID']
+                return redirect(url_for('index'))
+            else:
+                return '帳號密碼輸入錯誤'
         else:
-            return redirect(url_for('login'),alert='帳號密碼輸入錯誤')
+            return '請先進行註冊'
+
+        # if email == data['email'] & pwd == data['pwd']:
+        #     user = User()
+        #     user.id = email
+        #     uid = data['userID']
+        #     login_user(user)
+        #     return redirect(url_for('login'),uid)
+        # else:
+        #     return redirect(url_for('login'),alert='帳號密碼輸入錯誤')
         
         
         # if request.values['login-btn'] == 'login': #html頁面login按鈕 按鈕name的value等於login
@@ -76,10 +87,12 @@ def signin():
     if request.method == 'POST':
         email = request.form['email_input']
         users = db.selectUser(email)
-        if len(users) == 0:
+        if users is None:
             userID = request.form['uid_input']
-            pwd = request.form['pwd_input']
-            if(db.insertUser(userID,email,pwd)):
+            hashpass = bcrypt.hashpw(request.form['pwd_input'].encode('utf-8'), bcrypt.gensalt())
+            if(db.insertUser(userID,email,hashpass)):
+                session['userID'] = userID
+                session['email'] = email
                 flash('註冊成功，請登入')
                 return redirect(url_for('login'))
         else:

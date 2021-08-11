@@ -22,15 +22,9 @@ def selectPigdata():
     result = [ {**item, **{"_id": str(item["_id"])} } for item in result ] #處理 objectId 轉string
     return result
 
-#找全部使用者
+#找使用者
 def selectUser(email):
-    result = colluser.find({'email': email})  #抓資料
-    result = [ {**item, **{"_id": str(item["_id"])} } for item in result ] #處理 objectId 轉string
-    return result
-
-#找使用者個人資訊
-def selectUserInfo(email):
-    result = colluser.find_one({'email': email})
+    result = colluser.find_one({'email': email})  #抓資料
     return result
 
 #新增使用者
