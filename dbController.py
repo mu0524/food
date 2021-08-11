@@ -12,10 +12,9 @@ colleva = db.evaluation
 collfre = db.free
 collgre = db.green
 colluser = db.User
+collmat = db.material
 
 #coll.stats #確認是否連線
-
-
 
 def selectPigdata():
     result = collpig.find()  #抓資料
@@ -31,3 +30,7 @@ def selectUser(email):
 def insertUser(userID,email,pwd):
     colluser.insert_one({'userID': userID, 'email':email, 'pwd':pwd})
     return True
+
+def selectMaterial():
+    result = collmat.find_one()
+    return result

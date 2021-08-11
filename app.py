@@ -5,7 +5,8 @@ import os, bcrypt
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 
 app = Flask(__name__)
-app.secret_key = 'dfdb937a11c61ce34b50e3566510c63a'
+mat = db.selectMaterial()
+app.secret_key = mat['secret_key']
 
 # login_manager = LoginManager()
 # login_manager.init_app(app)
@@ -31,8 +32,8 @@ app.secret_key = 'dfdb937a11c61ce34b50e3566510c63a'
 
 @app.route('/')
 def index():
-    if 'userID' in session:
-        return 'hi ' + session['userID']
+    # if 'userID' in session:
+    #     return render_template(('user.html'), uid = session['userID'])
     return render_template('index.html') #return url string 中回傳index.html 做為模板
 
 @app.route('/map')
@@ -48,9 +49,14 @@ def news():
 def green():
     return render_template('green.html') 
 
-@app.route('/userinfo')
+@app.route('/userinfo', methods=['POST','GET'])
 def user():
-    return render_template('user.html') 
+    if request.method == 'POST':
+        if request.values['logout-btn'] == 'logout': #html頁面login按鈕 按鈕name的value等於login
+            session.clear()
+            return redirect(url_for('index')) #跳轉至index function(前往index頁面)
+
+    return render_template('user.html',uid = session['userID'])
 
 @app.route('/login', methods=['POST','GET']) #有表單(form)就需要methods這一個
 def login():
@@ -61,11 +67,14 @@ def login():
             if bcrypt.hashpw(request.form['pwd_input'].encode('utf-8'), login_user['pwd']) == login_user['pwd']:
                 session['email'] = email
                 session['userID'] = login_user['userID']
-                return redirect(url_for('index'))
+                
+                return redirect(url_for('user'))
             else:
-                return '帳號密碼輸入錯誤'
+                flash('帳號密碼輸入錯誤')
+                return redirect(url_for('login'))
         else:
-            return '請先進行註冊'
+            flash('請先進行註冊')
+            return redirect(url_for('signin'))
 
         # if email == data['email'] & pwd == data['pwd']:
         #     user = User()
