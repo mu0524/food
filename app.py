@@ -39,7 +39,8 @@ def index():
 @app.route('/map')
 def maptest():
     data=db.selectPigdata()
-    return render_template('map.html', data=data,count=len(data)) #小小測試東西有沒有傳到網頁
+    api = mat['map_api']
+    return render_template('map.html', data=data, api=api) #小小測試東西有沒有傳到網頁
 
 @app.route('/news')
 def news():

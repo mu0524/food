@@ -16,8 +16,8 @@
     <!--怎麼插github阿-->
     <script src="../static/js/jquery.csv.min.js"></script>
 
-    <!-- 地圖api API key AIzaSyAb22ZqUxgWeBLNhIJ_C3GnlEx_m8jk-9Y-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAb22ZqUxgWeBLNhIJ_C3GnlEx_m8jk-9Y&callback=initMap&libraries=&v=weekly" async></script>
+    <!-- 地圖api API-->
+    <script src="https://maps.googleapis.com/maps/api/js?key={{api}}&callback=initMap&libraries=&v=weekly" async></script>
 </head>
 
 <body id="page-top">
@@ -116,11 +116,11 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 
-			if ( document.getElementById("pig_check").checked == true){
-				setPigMarker()
-			}
-			else{
-			}
+			// if ( document.getElementById("pig_check").checked == true){
+			// 	setPigMarker()
+			// }
+			// else{
+			// }
 		}
 		
 		var marker = [];
