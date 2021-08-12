@@ -25,7 +25,7 @@
 				<li class="nav-item"><a class="nav-link" href="./map">地圖</a></li>
 				<li class="nav-item"><a class="nav-link" href="./news">食安新聞</a></li>
 				<li class="nav-item"><a class="nav-link" href="./greenresturant">綠色餐廳</a></li>
-				<li class="nav-item"><a class="nav-link" href="./login"><i class="fas fa-user"></i></a></li>
+				<li class="nav-item"><a class="nav-link active" href="./userinfo"><i class="fas fa-user"></i></a></li>
 			</ul>
 		</div>
 	</nav>
@@ -39,7 +39,7 @@
 		<section class="first">
             <div class="container">
                 <div class="box1 border p-5 text-center">
-                    <img id="user-img" class="rounded-circle w-25 mb-5" src="../static/images/hui.png">
+                    <img id="user-img" class="rounded-circle w-25 mb-5" src="../static/images/user img.png">
                     <div class="row mb-5">
                         <div class="col  text-right">
                             <p><label class="mr-3">暱稱</label></p>
@@ -47,9 +47,30 @@
                         </div>
                         <div class="col text-left">
                             <p><label>{{uid}}</label></p>
-                            <p><a href="#" id="btn-pwd" class="border btn btn-primary btn-sm active" role="button" aria-pressed="true">更改密碼</a></p>
+							<p><button name="updataPWD-btn" type="submit" id="btn-pwd" class="btn border btn-sm" data-toggle="modal" data-target="#updataPWD">更改密碼</button></p>
+								<!-- Modal -->
+								<div class="modal fade" id="updataPWD" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">更改密碼</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+										</div>
+										<div class="modal-body text-center">
+										<label for="inputPassword">請輸入新密碼</label>
+										<p><input name="pwd_input" type="password" class="form-control w-50 mx-auto" id="inputPassword" placeholder="New Password"></p>
+										</div>
+										<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+										<button type="button" class="btn btn-primary">Save changes</button>
+										</div>
+									</div>
+									</div>
+								</div>
 							<form method="POST">
-								<button name="logout-btn" type="submit" id="logout" class="btn btn-primary" value="logout">登出</button>
+								<p><button name="logout-btn" type="submit" id="logout" class="btn btn-primary" value="logout">登出</button></p>
 							</form>
                         </div>
                     </div>
@@ -86,7 +107,6 @@
 			<div class="col-lg-4 text-lg-end text-right">
 				<ul class="footer-link">
 					<li class="nav-item"><a class="nav-link" href="./about">關於我們</a></li>
-					<li class="nav-item"><a class="nav-link active" href="./userinfo">使用者頁面</a></li>
 				</ul>
 			</div>
 		</div>

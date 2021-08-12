@@ -1,53 +1,43 @@
 from flask import Flask, render_template, url_for,redirect, request, flash, session
 from pymongo import message
 import dbController as db
-import os, bcrypt
-from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+import bcrypt
+from datetime import timedelta
 
 app = Flask(__name__)
 mat = db.selectMaterial()
 app.secret_key = mat['secret_key']
+#app.permanent_session_lifetime = timedelta(minutes=20) session失效時間 
 
-# login_manager = LoginManager()
-# login_manager.init_app(app)
-# login_manager.session_protection = 'strong'
-# login_manager.login_view = 'login'
-# login_manager.login_message = '請先登入'
-
-
-# class User(UserMixin):
-#     pass
-
-# #確認使用者是否是在我們的合法清單users當中，若沒有，就什麼都不做。
-# #若有，就宣告一個我們剛才用UserMixin做出來的物件User()，貼上user標籤，
-# #並回傳給呼叫這個函數user_loader()的地方
-# @login_manager.user_loader
-# def user_loader(email): 
-#     users = db.selectUser(email)
-#     if email not in users:
-#         return
-#     user = User()
-#     user.id = email
-#     return user
 
 @app.route('/')
 def index():
-    # if 'userID' in session:
-    #     return render_template(('user.html'), uid = session['userID'])
-    return render_template('index.html') #return url string 中回傳index.html 做為模板
+    if 'userID' in session:
+        return render_template(('index.html'), uid = session['userID'])
+    else:
+        return render_template('index.html') #return url string 中回傳index.html 做為模板
 
 @app.route('/map')
 def maptest():
+    if 'userID' in session:
+        data=db.selectPigdata()
+        api = mat['map_api']
+        return render_template(('map.html'), uid = session['userID'],data=data, api=api)
+
     data=db.selectPigdata()
     api = mat['map_api']
     return render_template('map.html', data=data, api=api) #小小測試東西有沒有傳到網頁
 
 @app.route('/news')
 def news():
+    if 'userID' in session:
+        return render_template(('news.html'), uid = session['userID'])
     return render_template('news.html') 
 
 @app.route('/greenresturant')
 def green():
+    if 'userID' in session:
+        return render_template(('green.html'), uid = session['userID'])
     return render_template('green.html') 
 
 @app.route('/userinfo', methods=['POST','GET'])
@@ -56,7 +46,7 @@ def user():
         if request.values['logout-btn'] == 'logout': #html頁面login按鈕 按鈕name的value等於login
             session.clear()
             return redirect(url_for('index')) #跳轉至index function(前往index頁面)
-
+    
     return render_template('user.html',uid = session['userID'])
 
 @app.route('/login', methods=['POST','GET']) #有表單(form)就需要methods這一個
@@ -76,19 +66,6 @@ def login():
         else:
             flash('請先進行註冊')
             return redirect(url_for('signin'))
-
-        # if email == data['email'] & pwd == data['pwd']:
-        #     user = User()
-        #     user.id = email
-        #     uid = data['userID']
-        #     login_user(user)
-        #     return redirect(url_for('login'),uid)
-        # else:
-        #     return redirect(url_for('login'),alert='帳號密碼輸入錯誤')
-        
-        
-        # if request.values['login-btn'] == 'login': #html頁面login按鈕 按鈕name的value等於login
-        #     return redirect(url_for('index')) #跳轉至index function(前往index頁面)
     else:
         return render_template('login.html') 
 
@@ -112,7 +89,10 @@ def signin():
 
 @app.route('/about')
 def about():
-    return render_template('about.html') 
+    if 'userID' in session:
+        return render_template(('about.html'), uid = session['userID'])
+    else:
+        return render_template('about.html') 
 
 @app.route('/index.html')
 def test():
