@@ -16,11 +16,11 @@
     <!--怎麼插github阿-->
     <script src="../static/js/jquery.csv.min.js"></script>
 
-    <!-- 地圖api API-->
-    <script src="https://maps.googleapis.com/maps/api/js?key={{api}}&callback=initMap&libraries=&v=weekly" async></script>
+
+
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="firstLoad()">
     <nav id="menu" class="navbar navbar-expand-lg fixed-top align-self-start">
 		<a class="navbar-brand" href="#page-top"><img class="w-80 ml-3" src="../static/images/title img.png"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars" style="color: #fff;"></i></button>
@@ -54,10 +54,9 @@
 				<!--分類框-->
 				<div class="class-restaurant col-lg-5 text-center">
 					<form>
-						<input class="mr-2" type="checkbox" id="pig_check" onclick="checkbox_select()" checked="checked"><label for="pig_check">台灣豬</label>
-						<input class="mr-2" type="checkbox" id="green_check">綠色餐廳
-						<input class="mr-2" type="checkbox" id="good_check">餐飲業優良等級
-						<input class="mr-2" type="checkbox" id="discount_check">自備餐具折扣
+						<input class="mr-2" type="checkbox" id="settings" checked="checked" value="CK_twpig">台灣豬
+						<input class="mr-2" type="checkbox" id="settings" value="CK_green">綠色餐廳
+						<input class="mr-2" type="checkbox" id="settings" value="CK_free">自備餐具折扣
 					</form>
 				</div>
 			</div>
@@ -84,8 +83,10 @@
 
 	<script >
 		//全域變數
-		let map;
-		var pigdata=[];
+	
+		//let text='{{data|tojson}}'
+		//let pigdata=JSON.parse(text);
+		let pigdata=[];
 
 		// 地標資料處理
 		pigdata =[
@@ -99,7 +100,6 @@
 				},
 			//{% endfor %}
 		];
-
 		//地標圖片，圖片88 我頭會痛死要重調惹QAQ
 		const icons = {
 			pig: "./static/images/pig.png",
@@ -110,7 +110,7 @@
 
 		//地圖
 		function initMap() {
-			map = new google.maps.Map(document.getElementById("map"), {
+			var map = new google.maps.Map(document.getElementById("map"), {
 				center: { 
 					lat: 23.695919378044756, 
 					lng: 120.53353474084176
@@ -118,19 +118,18 @@
 				zoom: 16,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
+		//}
 
-			// if ( document.getElementById("pig_check").checked == true){
-			// 	setPigMarker()
-			// }
-			// else{
-			// }
-		}
 		
+
+		//因為只會跑一次，第一次必定跑到，直接呼叫就OK
+		//setPigMarker()
+
 		var marker = [];
     	var infoWindow = [];
 
 		//豬豬地標
-		function setPigMarker() {
+		//function setPigMarker() {
 
 			//跑迴圈新增地標
 			for (let i = 0; i< pigdata.length; i++) {
@@ -147,15 +146,17 @@
 						+pigdata[i]['context'] + '</p></div>'
 				});
 
-				markerEvent(i);
+				marker[i].addListener('click', function() {
+                 infoWindow[i].open(map, marker[i]);
+               });
 			}
-
+		
 			// 點地標，跑出訊息框
-            function markerEvent(i) {
-              marker[i].addListener('click', function() {
-                infoWindow[i].open(map, marker[i]);
-              });
-            }
+            // function markerEvent(i) {
+            //   marker[i].addListener('click', function() {
+            //     infoWindow[i].open(map, marker[i]);
+            //   });
+            // }
 							
 		}
 
@@ -166,17 +167,85 @@
 		}
 
 		
-		function checkbox_select(){
-			if ( document.getElementById("pig_check").checked == true){
-				setPigMarker()
-			}
-			else {
-				deleteMarkers()
-			}
-		}
-		
+		// function checkbox_select(){
+		// 	if ( document.getElementById("pig_check").checked == true){
+		// 		setPigMarker()
+		// 	}
+		// 	else {
+		// 		deleteMarkers()
+		// 	}
+		// }
 	</script>
+	<script>
+	//用來控制checkbox的script
+
+	let checkboxes = $("input[type=checkbox][id=settings]")
+    let enabledSettings = [];
+     
+     // Attach a change event handler to the checkboxes.
+     checkboxes.change(function(){
+        enabledSettings = checkboxes
+         .filter(":checked") // Filter out unchecked boxes.
+         .map(function() { // Extract values using jQuery map.
+           return this.value;
+         }) 
+         .get() // Get array.
+
+       console.log(enabledSettings);
+	   markcontrol()
+     });   
+
+	 //這邊只是單純因為有預設，所以才要讓firstLoad來執行一次load，如果直接讓他執行load會出錯所以才這樣寫
+     function load(){
+        enabledSettings = checkboxes
+         .filter(":checked") // Filter out unchecked boxes.
+         .map(function() { // Extract values using jQuery map.
+           return this.value;
+         }) 
+         .get() // Get array.
+
+       console.log(enabledSettings);
+
+     }
+
+     function firstLoad(){
+        load()
+     }
+
+	 //這邊是在控制marker，讓他每次被讀到都會執行這裡
+	 function markcontrol(){
+		var bol_twpig,bol_green,bol_free=false;
+		enabledSettings
+
+		if(enabledSettings.indexOf('CK_twpig')!=-1)
+		console.log("CK_twpig OKKKK");
+		//setPigMarker()
+		// else
+		// deleteMarkers()
+		if(enabledSettings.indexOf('CK_green')!=-1)
+		console.log("CK_green OKKKK");
+
+		enabledSettings.indexOf('CK_free')!=-1 ? (console.log("CK_free OKKKK")):(console.log("CK_free FFFFFF"));
 
 
-</body>
+		if(enabledSettings!=""){
+			for(let i=0;i++;i<enabledSettings.length){
+				if(enabledSettings[i]=="CK_twpig"){
+					setPigMarker()
+					bol_twpig=true;
+				}
+				if(enabledSettings[i]=="CK_green"){//寫入綠色餐廳
+					bol_green=true;
+				}
+				if(enabledSettings[i]=="CK_free"){//寫入餐具
+					bol_free=true;
+				}
+			}//end for
+		}//end if
+
+	}
+
+	</script>
+	<!-- 地圖api API-->
+	<script src="https://maps.googleapis.com/maps/api/js?key={{api}}&callback=initMap&libraries=&v=weekly" async></script></body>
 </html>
