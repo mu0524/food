@@ -13,6 +13,8 @@
 	<script src="../static/js/jquery-3.6.0.js"></script>
 	<script src="../static/js/index.js"></script>
 	<script src="../static/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
+
+	<script src="../static/js/sweetalert.min.js"></script>
 	<!-- icons -->
 	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -72,6 +74,18 @@
         </section>
 	</div>
 	
+	{% with messages = get_flashed_messages(with_categories = true) %}
+		{% if messages %}
+			{% for category, message in messages %}
+			<script type = "text/javascript">
+				swal({
+					title: "{{message}}",
+					icon: "{{category}}",
+				});
+			</script>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
 		
 
 	<footer class="footer py-2">

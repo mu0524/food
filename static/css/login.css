@@ -10,9 +10,6 @@ html{
 * {
 	margin: 0;
 	padding: 0;
-	/* font-family: Barlow, Noto Sans TC;
-	letter-spacing: 3px;
-	font-size: 12px; */
 }
 
 body {
@@ -28,16 +25,56 @@ body {
 	letter-spacing: .2rem;
 }
 
-.login-box {
-	padding-top: 0rem;
-}
-
-form {
-	width: 30vw;
-	background-color: #ade4c1;
+.login-form {
+	background-color: #DFEEED;
 	position: relative;
 	margin: 0 auto;
+	border-radius: 2rem;
+	border: 1px solid #64B3B0;
 }
+
+p {
+	font-size: .7rem;
+	letter-spacing: .1rem;
+}
+
+.login-btn{
+	background-color: #64B3B0;
+	border: 0;
+	border-radius: 1rem;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #64B3B080;
+    border: 0;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #64B3B080;
+    border: 0;
+}
+
+.btn-primary.focus, .btn-primary:focus {
+    box-shadow: 0 0 0 .2rem #64B3B050;
+}
+
+.form-control {
+    color: #64B3B0;
+    background-color: #fff;
+    border: 1px solid #64b3b0;
+    border-radius: .5rem;
+}
+
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	font-family: Calibri , 'Noto Sans TC', cursive;
+	color: #ddd;
+	letter-spacing: .1rem;
+}
+
+
+
 
 
 /* 卷軸底色 */

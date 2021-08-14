@@ -48,6 +48,7 @@ def user():
     if request.method == 'POST':
         if request.values['logout-btn'] == 'logout': #html頁面login按鈕 按鈕name的value等於login
             session.clear()
+            flash('等您下次回來')
             return redirect(url_for('index')) #跳轉至index function(前往index頁面)
     
     return render_template('user.html',uid = session['userID'])
@@ -61,16 +62,16 @@ def login():
             if bcrypt.hashpw(request.form['pwd_input'].encode('utf-8'), login_user['pwd']) == login_user['pwd']:
                 session['email'] = email
                 session['userID'] = login_user['userID']
-                
-                return redirect(url_for('user'))
+                flash('登入成功','success')
+                return redirect(url_for('index'))
             else:
-                flash('帳號密碼輸入錯誤')
+                flash('帳號密碼輸入錯誤','error')
                 return redirect(url_for('login'))
         else:
-            flash('請先進行註冊')
+            flash('請先進行註冊','warning')
             return redirect(url_for('signin'))
-    else:
-        return render_template('login.html') 
+
+    return render_template('login.html') 
 
 @app.route('/signin', methods=["GET", "POST"])
 def signin():
@@ -78,16 +79,20 @@ def signin():
         email = request.form['email_input']
         users = db.selectUser(email)
         if users is None:
-            userID = request.form['uid_input']
-            hashpass = bcrypt.hashpw(request.form['pwd_input'].encode('utf-8'), bcrypt.gensalt())
-            if(db.insertUser(userID,email,hashpass)):
-                session['userID'] = userID
-                session['email'] = email
-                flash('註冊成功，請登入')
-                return redirect(url_for('login'))
+            if email == '' or request.form['pwd_input'] == '':
+                flash('請先輸入email及密碼','warning')
+            else:
+                userID = request.form['uid_input']
+                hashpass = bcrypt.hashpw(request.form['pwd_input'].encode('utf-8'), bcrypt.gensalt())
+                if(db.insertUser(userID,email,hashpass)):
+                    session['userID'] = userID
+                    session['email'] = email
+                    flash('註冊成功，請登入','success')
+                    return redirect(url_for('login'))
         else:
-            flash('此email已註冊過，請重新輸入')
+            flash('此email已註冊過，請重新輸入','error')
             return redirect(url_for('signin'))
+            
     return render_template('signin.html') 
 
 @app.route('/about')
