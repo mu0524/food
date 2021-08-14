@@ -32,9 +32,26 @@ body {
 .masthead {
 	position: relative;
 	background: linear-gradient(to bottom, #d0ebd960 0%, #d0ebd900 100%);
-	padding: 14rem 0;
-	height: 92vh;
+	padding: 10rem 0;
 }
+
+@media (min-width: 576px) { 
+	.masthead {
+		position: relative;
+		background: linear-gradient(to bottom, #d0ebd960 0%, #d0ebd900 100%);
+		padding: 10rem 0;
+	}
+ }
+
+@media (min-width: 768px) { 
+	.masthead {
+		position: relative;
+		background: linear-gradient(to bottom, #d0ebd960 0%, #d0ebd900 100%);
+		padding: 14rem 0;
+	}
+	
+ }
+
 
 .masthead .masthead-heading {
 	position: relative;

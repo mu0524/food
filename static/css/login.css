@@ -67,12 +67,30 @@ p {
     border-radius: .5rem;
 }
 
+.form-control:focus {
+    color: #40577D;
+    background-color: #fff;
+    border-color: #64b3b0;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem #64B3B050;
+}
+
 .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
 	font-family: Calibri , 'Noto Sans TC', cursive;
 	color: #ddd;
 	letter-spacing: .1rem;
 }
 
+a {
+    color: #B04A69;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    color: #B04A69;
+    text-decoration: underline;
+}
 
 
 
