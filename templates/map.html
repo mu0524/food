@@ -105,7 +105,6 @@
 			pig: "./static/images/pig.png",
 			green:"./static/images/green.png",
 			free:"./static/images/free.png",
-			evaluation:"./static/images/evaluation.png",
 		};
 
 		//地圖
@@ -118,18 +117,9 @@
 				zoom: 16,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
-		//}
 
-		
-
-		//因為只會跑一次，第一次必定跑到，直接呼叫就OK
-		//setPigMarker()
-
-		var marker = [];
-    	var infoWindow = [];
-
-		//豬豬地標
-		//function setPigMarker() {
+			var marker = [];
+			var infoWindow = [];
 
 			//跑迴圈新增地標
 			for (let i = 0; i< pigdata.length; i++) {
@@ -150,13 +140,6 @@
                  infoWindow[i].open(map, marker[i]);
                });
 			}
-		
-			// 點地標，跑出訊息框
-            // function markerEvent(i) {
-            //   marker[i].addListener('click', function() {
-            //     infoWindow[i].open(map, marker[i]);
-            //   });
-            // }
 							
 		}
 
@@ -167,15 +150,8 @@
 		}
 
 		
-		// function checkbox_select(){
-		// 	if ( document.getElementById("pig_check").checked == true){
-		// 		setPigMarker()
-		// 	}
-		// 	else {
-		// 		deleteMarkers()
-		// 	}
-		// }
 	</script>
+
 	<script>
 	//用來控制checkbox的script
 
