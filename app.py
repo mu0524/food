@@ -23,13 +23,17 @@ def maptest():
     if 'userID' in session:
         #data= mark_safe(db.selectPigdata())
         data= db.selectPigdata()
+        greenData=db.selectGreenData()
+        freeData=db.selectFreeData()
         api = mat['map_api']
-        return render_template(('map.html'), uid = session['userID'],data=data, api=api)
+        return render_template(('map.html'), uid = session['userID'],data=data, api=api,greenData=greenData,freeData=freeData)
 
     #data= mark_safe(db.selectPigdata())
     data= db.selectPigdata()
+    greenData=db.selectGreenData()
+    freeData=db.selectFreeData()
     api = mat['map_api']
-    return render_template('map.html', data=data, api=api) #小小測試東西有沒有傳到網頁
+    return render_template('map.html', data=data, api=api,greenData=greenData,freeData=freeData) #小小測試東西有沒有傳到網頁
 
 @app.route('/news')
 def news():
