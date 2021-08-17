@@ -89,7 +89,6 @@
 
 		text='{{freeData|tojson()}}'
 		let freeData=JSON.parse(text);
-		console.log(freeData[0]['Response_Y'])
 
 		let pigdata=[];
 
@@ -130,7 +129,8 @@
 
 			var infoWindow = [];
 
-			//跑迴圈新增地標
+
+			//跑迴圈新增地標，豬
 			for (let i = 0; i< pigdata.length; i++) {
 				marker[i] = new google.maps.Marker({
 					position: new google.maps.LatLng(pigdata[i]['Latitude'], pigdata[i]['Lontitude']), //位置
@@ -141,16 +141,16 @@
 				
 				// 按下地標跑出的內容設定
 				infoWindow[i] = new google.maps.InfoWindow({ 
-					content: '<div class="map_content text-center p-2"><p class="map_content_title">' +pigdata[i]['market_name']+'</p><p>地址：'+ pigdata[i]['addr'] +'</p><p>'
+					content: '<div class="map_content text-center p-2"><p class="map_content_title">' +pigdata[i]['title']+'</p><p>地址：'+ pigdata[i]['addr'] +'</p><p>'
 						+pigdata[i]['context'] + '</p></div>'
 				});
 
-				 marker[i].addListener('click', function() {
-                 infoWindow[i].open(map, marker[i]);
+				marker[i].addListener('click', function() {
+					infoWindow[i].open(map, marker[i]);
                });
 			}
 
-			//跑迴圈新增地標
+			//跑迴圈新增地標，綠
 			for (let i=0 ; i< greenData.length; i++) {
 				greenMarker[i] = new google.maps.Marker({
 					position: new google.maps.LatLng(greenData[i]['Response_Y'], greenData[i]['Response_X']), //位置
@@ -165,18 +165,18 @@
 						+greenData[i]['Tel'] + '</p></div>'
 				});
 
-				 greenMarker[i].addListener('click', function() {
-                 infoWindow[i].open(map, greenMarker[i]);
+				greenMarker[i].addListener('click', function() {
+					infoWindow[i].open(map, greenMarker[i]);
                });
 			}
 		
 			
-			//跑迴圈新增地標
+			//跑迴圈新增地標，免費
 			for (let i=0 ; i< freeData.length; i++) {
 				freeMarker[i] = new google.maps.Marker({
 					position: new google.maps.LatLng(freeData[i]["Response_Y"], freeData[i]["Response_X"]), //位置
 					map: map,
-					title: freeData[i]['Name'],
+					title: freeData[i]['SupplierName'],
 					icon: icons['free'], //免費
 				});
 				
@@ -186,13 +186,13 @@
 						+freeData[i]['Tel'] + '</p><p>'+freeData[i]['GBType']+'</p></div>'
 				});
 
-				 freeMarker[i].addListener('click', function() {
-                 infoWindow[i].open(map, freeMarker[i]);
+				freeMarker[i].addListener('click', function() {
+					infoWindow[i].open(map, freeMarker[i]);
                });
 			}
 		}
 
-		// 清除所有地標，我發現清的調，可是圖片還活著ㄚㄚㄚㄚ
+		// 清除地標，涼ki
 		function deleteMarkers() {
 			setPigMarker(null);
 			marker = [];
