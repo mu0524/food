@@ -83,7 +83,9 @@
 	
 
 	<script >
-		let checkboxA = document.querySelector("#twpig");
+		let MarkerType = { "typeA":1, "typeB":2, "typeC":3, };
+
+		let checkboxA = document.querySelector("#twpig");;
 		// let checkboxB = document.querySelector("...");
 		// let checkboxC = document.querySelector("...");
 
@@ -110,22 +112,23 @@
 
 		// 地標資料
 		let dataMap = {
-			'MarkerType.typeA': pigdata,
-			'MarkerType.typeB': greenData,
-			'MarkerType.typeC': freeData,
+			[MarkerType.typeA]: pigdata,
+			[MarkerType.typeB]: greenData,
+			[MarkerType.typeC]: freeData,
 		};
 
+
 		let markersMap = {
-				'MarkerType.typeA': [],
-				'MarkerType.typeB': [],
-				'MarkerType.typeC': [],
+			[MarkerType.typeA]: [],
+			[MarkerType.typeB]: [],
+			[MarkerType.typeC]: [],
 		}
 
 		//地標圖片，圖片88 我頭會痛死要重調惹QAQ
 		const icons = {
-			'MarkerType.typeA': "./static/images/pig.png",
-			'MarkerType.typeB':"./static/images/green.png",
-			'MarkerType.typeC':"./static/images/free.png",
+			[MarkerType.typeA]: "./static/images/pig.png",
+			[MarkerType.typeB]:"./static/images/green.png",
+			[MarkerType.typeC]:"./static/images/free.png",
 		};
 
 		let map = null;
@@ -141,7 +144,7 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 
-			showMarkers('MarkerType.typeA')
+			showMarkers(MarkerType.typeA);
 		}
 
 
@@ -176,7 +179,7 @@
 			else {
 				let markers = markersMap[markerType];
 				for (let marker of markers)
-				marker.setMap(map);
+				marker.setVisible(true);
 			}
 			
 		}
@@ -186,7 +189,7 @@
 		function clearMarkers(markerType) {
 			let markers = markersMap[markerType];
 			for (let marker of markers)
-			marker.setMap(null);
+			marker.setVisible(false);
 			// markersMap[markerType].length = 0; 
 			// ↑↑ showMarkers()有用if-else區分markers存在或不存在，
 			// 那清除就不用清掉markers，結省效能
@@ -194,10 +197,10 @@
 
 		checkboxA.addEventListener('change', () => {
 			if (this.checked){
-				showMarkers('MarkerType.typeA');
+				showMarkers(MarkerType.typeA);
 			}
 			else{
-				clearMarkers('MarkerType.typeA');
+				clearMarkers(MarkerType.typeA);
 			}
 		});
 		

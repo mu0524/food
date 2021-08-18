@@ -1,5 +1,6 @@
 /* 底色#d0ebd9 字#4B534C 淡#D1D1C2 酒紅#5A0217 苺粉#B8837E*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Noto+Serif+TC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
 
 /*火狐卷軸*/
@@ -46,7 +47,7 @@ body {
 
 .map_content{
 	width: 15vw;
-	font-family: Calibri , 'Noto Sans TC', cursive;
+	font-family: Calibri , 'Noto Sans TC', 'Noto Sans JP', cursive;
 	letter-spacing: 0.2rem;
 	line-height: 1rem;
 }
