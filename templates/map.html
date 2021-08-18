@@ -17,10 +17,9 @@
     <script src="../static/js/jquery.csv.min.js"></script>
 
 
-
 </head>
 
-<body id="page-top" onload="firstLoad()">
+<body id="page-top">
     <nav id="menu" class="navbar navbar-expand-lg fixed-top align-self-start">
 		<a class="navbar-brand" href="#page-top"><img class="w-80 ml-3" src="../static/images/title img.png"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars" style="color: #fff;"></i></button>
@@ -54,7 +53,7 @@
 				<!--分類框-->
 				<div class="class-restaurant col-lg-5 text-center">
 					<form>
-						<input class="mr-2" type="checkbox" id="settings" checked="checked" value="CK_twpig">台灣豬
+						<input class="mr-2" type="checkbox" id="twpig" value="CK_twpig">台灣豬
 						<input class="mr-2" type="checkbox" id="settings" value="CK_green">綠色餐廳
 						<input class="mr-2" type="checkbox" id="settings" value="CK_free">自備餐具折扣
 					</form>
@@ -81,9 +80,13 @@
 		</div>
 	</footer>
 
-	<script >
-		//全域變數
 	
+
+	<script >
+		let checkboxA = document.querySelector("#twpig");
+		// let checkboxB = document.querySelector("...");
+		// let checkboxC = document.querySelector("...");
+
 		let text='{{greenData|tojson()}}'
 		let greenData=JSON.parse(text);
 
@@ -92,28 +95,44 @@
 
 		let pigdata=[];
 
-		// 地標資料處理
+		// 豬豬資料處理
 		pigdata =[
 			//{% for record in data%}
-				{
-					title:'{{record.market_name}}',
-					addr:'{{record.addr}}',
-					Latitude:'{{record.Latitude}}',
-					Lontitude: '{{record.Lontitude}}',
-					context:'{{record.context}}'
-				},
+			{
+				title:'{{record.market_name}}',
+				addr:'{{record.addr}}',
+				Latitude:'{{record.Latitude}}',
+				Lontitude: '{{record.Lontitude}}',
+				context:'{{record.context}}'
+			},
 			//{% endfor %}
 		];
+
+		// 地標資料
+		let dataMap = {
+			'MarkerType.typeA': pigdata,
+			'MarkerType.typeB': greenData,
+			'MarkerType.typeC': freeData,
+		};
+
+		let markersMap = {
+				'MarkerType.typeA': [],
+				'MarkerType.typeB': [],
+				'MarkerType.typeC': [],
+		}
+
 		//地標圖片，圖片88 我頭會痛死要重調惹QAQ
 		const icons = {
-			pig: "./static/images/pig.png",
-			green:"./static/images/green.png",
-			free:"./static/images/free.png",
+			'MarkerType.typeA': "./static/images/pig.png",
+			'MarkerType.typeB':"./static/images/green.png",
+			'MarkerType.typeC':"./static/images/free.png",
 		};
+
+		let map = null;
 
 		//地圖
 		function initMap() {
-			var map = new google.maps.Map(document.getElementById("map"), {
+			map = new google.maps.Map(document.getElementById("map"), {
 				center: { 
 					lat: 23.695919378044756, 
 					lng: 120.53353474084176
@@ -122,86 +141,69 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 
-			//豬豬
-			var marker = [];
-			var greenMarker=[];
-			var freeMarker=[];
-
-			var infoWindow = [];
+			showMarkers('MarkerType.typeA')
+		}
 
 
-			//跑迴圈新增地標，豬
-			for (let i = 0; i< pigdata.length; i++) {
-				marker[i] = new google.maps.Marker({
-					position: new google.maps.LatLng(pigdata[i]['Latitude'], pigdata[i]['Lontitude']), //位置
-					map: map,
-					title: pigdata[i]['market_name'],
-					icon: icons['pig'], //這邊我先弄豬而已
-				});
-				
-				// 按下地標跑出的內容設定
-				infoWindow[i] = new google.maps.InfoWindow({ 
-					content: '<div class="map_content text-center p-2"><p class="map_content_title">' +pigdata[i]['title']+'</p><p>地址：'+ pigdata[i]['addr'] +'</p><p>'
-						+pigdata[i]['context'] + '</p></div>'
-				});
 
-				marker[i].addListener('click', function() {
-					infoWindow[i].open(map, marker[i]);
-               });
-			}
-
-			//跑迴圈新增地標，綠
-			for (let i=0 ; i< greenData.length; i++) {
-				greenMarker[i] = new google.maps.Marker({
-					position: new google.maps.LatLng(greenData[i]['Response_Y'], greenData[i]['Response_X']), //位置
-					map: map,
-					title: greenData[i]['Name'],
-					icon: icons['green'], //綠色
-				});
-				
-				// 按下地標跑出的內容設定
-				infoWindow[i] = new google.maps.InfoWindow({ 
-					content: '<div class="map_content text-center p-2"><p class="map_content_title">' +greenMarker[i]['title']+'</p><p>地址：'+greenData[i]['Address']+'</p><p>'
-						+greenData[i]['Tel'] + '</p></div>'
-				});
-
-				greenMarker[i].addListener('click', function() {
-					infoWindow[i].open(map, greenMarker[i]);
-               });
-			}
-		
+		function showMarkers(markerType) {
+			let data = dataMap[markerType];
+			let infoWindow = new google.maps.InfoWindow();
 			
-			//跑迴圈新增地標，免費
-			for (let i=0 ; i< freeData.length; i++) {
-				freeMarker[i] = new google.maps.Marker({
-					position: new google.maps.LatLng(freeData[i]["Response_Y"], freeData[i]["Response_X"]), //位置
-					map: map,
-					title: freeData[i]['SupplierName'],
-					icon: icons['free'], //免費
-				});
-				
-				// 按下地標跑出的內容設定
-				infoWindow[i] = new google.maps.InfoWindow({ 
-					content: '<div class="map_content text-center p-2"><p class="map_content_title">' +freeMarker[i]['title']+'</p><p>地址：'+freeData[i]['Address']+'</p><p>'
-						+freeData[i]['Tel'] + '</p><p>'+freeData[i]['GBType']+'</p></div>'
-				});
+			 // 若該markers不存在，設置
+			if (markersMap[markerType].length == 0) {
+				for (let el of data) {
+					let marker = new google.maps.Marker({
+						position: new google.maps.LatLng(el['Latitude'], el['Lontitude']), //位置
+						map: map,
+						title: el['title'],
+						icon: icons[markerType], //這邊我先弄豬而已
+					});
 
-				freeMarker[i].addListener('click', function() {
-					infoWindow[i].open(map, freeMarker[i]);
-               });
+					marker.addListener('click', () => {
+						infoWindow.close();
+						infoWindow = new google.maps.InfoWindow({ 
+							content: '<div class="map_content text-center p-2"><p class="map_content_title">' +el['title']+'</p><p>地址：'+ el['addr'] +'</p><p>'
+								+ el['context'] + '</p></div>'
+						});
+						infoWindow.open(map, marker);
+					})
+
+					markersMap[markerType].push(marker);
+				}
 			}
+			// 否則把map設到該markers所有元素上
+			else {
+				let markers = markersMap[markerType];
+				for (let marker of markers)
+				marker.setMap(map);
+			}
+			
+		}
+		
+
+		// 清除地標
+		function clearMarkers(markerType) {
+			let markers = markersMap[markerType];
+			for (let marker of markers)
+			marker.setMap(null);
+			// markersMap[markerType].length = 0; 
+			// ↑↑ showMarkers()有用if-else區分markers存在或不存在，
+			// 那清除就不用清掉markers，結省效能
 		}
 
-		// 清除地標，涼ki
-		function deleteMarkers() {
-			setPigMarker(null);
-			marker = [];
-		}
-
+		checkboxA.addEventListener('change', () => {
+			if (this.checked){
+				showMarkers('MarkerType.typeA');
+			}
+			else{
+				clearMarkers('MarkerType.typeA');
+			}
+		});
 		
 	</script>
 
-	<script>
+	<!-- <script>
 	//用來控制checkbox的script
 
 	let checkboxes = $("input[type=checkbox][id=settings]")
@@ -270,7 +272,9 @@
 
 	}
 
-	</script>
+	</script> -->
 	<!-- 地圖api API-->
-	<script src="https://maps.googleapis.com/maps/api/js?key={{api}}&callback=initMap&libraries=&v=weekly" async></script></body>
+	<script src="https://maps.googleapis.com/maps/api/js?key={{api}}&callback=initMap&libraries=&v=weekly" async></script>
+
+</body>
 </html>
