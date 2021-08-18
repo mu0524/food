@@ -53,9 +53,9 @@
 				<!--分類框-->
 				<div class="class-restaurant col-lg-5 text-center">
 					<form>
-						<input class="mr-2" type="checkbox" id="twpig" value="CK_twpig">台灣豬
-						<input class="mr-2" type="checkbox" id="settings" value="CK_green">綠色餐廳
-						<input class="mr-2" type="checkbox" id="settings" value="CK_free">自備餐具折扣
+						<input class="mr-2" type="checkbox" id="twpig" checked="true">台灣豬
+						<input class="mr-2" type="checkbox" id="green">綠色餐廳
+						<input class="mr-2" type="checkbox" id="free">自備餐具折扣
 					</form>
 				</div>
 			</div>
@@ -83,11 +83,12 @@
 	
 
 	<script >
-		let MarkerType = { "typeA":1, "typeB":2, "typeC":3, };
+		let MarkerType = { "pig":1, "green":2, "free":3, };
 
-		let checkboxA = document.querySelector("#twpig");;
-		// let checkboxB = document.querySelector("...");
-		// let checkboxC = document.querySelector("...");
+		let pig_checkbox = $('#twpig');
+		let green_checkbox = $('#green');
+		let free_checkbox = $('#free');
+		
 
 		let text='{{greenData|tojson()}}'
 		let greenData=JSON.parse(text);
@@ -101,34 +102,35 @@
 		pigdata =[
 			//{% for record in data%}
 			{
-				title:'{{record.market_name}}',
+				market_name:'{{record.market_name}}',
 				addr:'{{record.addr}}',
 				Latitude:'{{record.Latitude}}',
 				Lontitude: '{{record.Lontitude}}',
-				context:'{{record.context}}'
+				context:'{{record.context}}',
+				Tel:'{{record.Tel}}'
 			},
 			//{% endfor %}
 		];
 
 		// 地標資料
 		let dataMap = {
-			[MarkerType.typeA]: pigdata,
-			[MarkerType.typeB]: greenData,
-			[MarkerType.typeC]: freeData,
+			[MarkerType.pig]: pigdata,
+			[MarkerType.green]: greenData,
+			[MarkerType.free]: freeData,
 		};
 
 
 		let markersMap = {
-			[MarkerType.typeA]: [],
-			[MarkerType.typeB]: [],
-			[MarkerType.typeC]: [],
+			[MarkerType.pig]: [],
+			[MarkerType.green]: [],
+			[MarkerType.free]: [],
 		}
 
 		//地標圖片，圖片88 我頭會痛死要重調惹QAQ
 		const icons = {
-			[MarkerType.typeA]: "./static/images/pig.png",
-			[MarkerType.typeB]:"./static/images/green.png",
-			[MarkerType.typeC]:"./static/images/free.png",
+			[MarkerType.pig]: "./static/images/pig.png",
+			[MarkerType.green]:"./static/images/green.png",
+			[MarkerType.free]:"./static/images/free.png",
 		};
 
 		let map = null;
@@ -144,7 +146,7 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 
-			showMarkers(MarkerType.typeA);
+			showMarkers(MarkerType.pig);
 		}
 
 
@@ -159,14 +161,14 @@
 					let marker = new google.maps.Marker({
 						position: new google.maps.LatLng(el['Latitude'], el['Lontitude']), //位置
 						map: map,
-						title: el['title'],
+						title: el['market_name'],
 						icon: icons[markerType], //這邊我先弄豬而已
 					});
 
 					marker.addListener('click', () => {
 						infoWindow.close();
 						infoWindow = new google.maps.InfoWindow({ 
-							content: '<div class="map_content text-center p-2"><p class="map_content_title">' +el['title']+'</p><p>地址：'+ el['addr'] +'</p><p>'
+							content: '<div class="map_content text-center p-2"><p class="map_content_title">' +el['market_name']+'</p><p>'+ el['Tel'] +'</p><p>地址：'+ el['addr'] +'</p><p>'
 								+ el['context'] + '</p></div>'
 						});
 						infoWindow.open(map, marker);
@@ -195,87 +197,35 @@
 			// 那清除就不用清掉markers，結省效能
 		}
 
-		checkboxA.addEventListener('change', () => {
+		pig_checkbox.change(function() {
 			if (this.checked){
-				showMarkers(MarkerType.typeA);
+				showMarkers(MarkerType.pig);
 			}
 			else{
-				clearMarkers(MarkerType.typeA);
+				clearMarkers(MarkerType.pig);
+			}
+		});
+
+		green_checkbox.change(function() {
+			if (this.checked){
+				showMarkers(MarkerType.green);
+			}
+			else{
+				clearMarkers(MarkerType.green);
+			}
+		});
+
+		free_checkbox.change(function() {
+			if (this.checked){
+				showMarkers(MarkerType.free);
+			}
+			else{
+				clearMarkers(MarkerType.free);
 			}
 		});
 		
 	</script>
 
-	<!-- <script>
-	//用來控制checkbox的script
-
-	let checkboxes = $("input[type=checkbox][id=settings]")
-    let enabledSettings = [];
-     
-     // Attach a change event handler to the checkboxes.
-     checkboxes.change(function(){
-        enabledSettings = checkboxes
-         .filter(":checked") // Filter out unchecked boxes.
-         .map(function() { // Extract values using jQuery map.
-           return this.value;
-         }) 
-         .get() // Get array.
-
-       console.log(enabledSettings);
-	   markcontrol()
-     });   
-
-	 //這邊只是單純因為有預設，所以才要讓firstLoad來執行一次load，如果直接讓他執行load會出錯所以才這樣寫
-     function load(){
-        enabledSettings = checkboxes
-         .filter(":checked") // Filter out unchecked boxes.
-         .map(function() { // Extract values using jQuery map.
-           return this.value;
-         }) 
-         .get() // Get array.
-
-       console.log(enabledSettings);
-
-     }
-
-     function firstLoad(){
-        load()
-     }
-
-	 //這邊是在控制marker，讓他每次被讀到都會執行這裡
-	 function markcontrol(){
-		var bol_twpig,bol_green,bol_free=false;
-		enabledSettings
-
-		if(enabledSettings.indexOf('CK_twpig')!=-1)
-		console.log("CK_twpig OKKKK");
-		//setPigMarker()
-		// else
-		// deleteMarkers()
-		if(enabledSettings.indexOf('CK_green')!=-1)
-		console.log("CK_green OKKKK");
-
-		enabledSettings.indexOf('CK_free')!=-1 ? (console.log("CK_free OKKKK")):(console.log("CK_free FFFFFF"));
-
-
-		if(enabledSettings!=""){
-			for(let i=0;i++;i<enabledSettings.length){
-				if(enabledSettings[i]=="CK_twpig"){
-					setPigMarker()
-					bol_twpig=true;
-				}
-				if(enabledSettings[i]=="CK_green"){//寫入綠色餐廳
-					bol_green=true;
-				}
-				if(enabledSettings[i]=="CK_free"){//寫入餐具
-					bol_free=true;
-				}
-			}//end for
-		}//end if
-
-	}
-
-	</script> -->
 	<!-- 地圖api API-->
 	<script src="https://maps.googleapis.com/maps/api/js?key={{api}}&callback=initMap&libraries=&v=weekly" async></script>
 
