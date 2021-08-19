@@ -49,3 +49,43 @@ def updateUser(email,pwd):
 def selectMaterial():
     result = collmat.find_one()
     return result
+
+def myfind():
+    resultPig=[]
+    resultGre=[]
+    resultFre=[]
+
+    #myKeyword是要搜尋的字元，到時候要POST進來
+    myKeyword=""
+
+    if "台" in myKeyword:
+        myKeyword2=myKeyword.replace("台","臺")
+
+    if "臺"in myKeyword:
+        myKeyword2=myKeyword.replace("臺","台")
+
+
+    #豬
+    myfind=collpig.find({"$or":[{"market_name":{"$regex":myKeyword}},{"addr":{"$regex":myKeyword}}]},{"_id":0,"market_name":1,"addr":1,"Latitude": 1,"Lontitude": 1,"context":1,"Tel":1})
+    resultPig=[ {**item } for item in myfind ]
+    #綠色
+    myfind=collgre.find({"$or":[{"market_name":{"$regex":myKeyword}},{"addr":{"$regex":myKeyword}}]},{"_id":0,"market_name":1,"addr":1,"Latitude": 1,"Lontitude": 1,"context":1,"Tel":1})
+    resultGre=[ {**item } for item in myfind ]
+    #免費
+    myfind=collfre.find({"$or":[{"market_name":{"$regex":myKeyword}},{"addr":{"$regex":myKeyword}}]},{"_id":0,"market_name":1,"addr":1,"Latitude": 1,"Lontitude": 1,"context":1,"Tel":1})
+    resultFre=[ {**item } for item in myfind ]
+
+
+    if "myKeyword2" in locals():
+        #豬
+        myfind=collpig.find({"$or":[{"market_name":{"$regex":myKeyword2}},{"addr":{"$regex":myKeyword2}}]},{"_id":0,"market_name":1,"addr":1,"Latitude": 1,"Lontitude": 1,"context":1,"Tel":1})
+        resultPig+=[ {**item } for item in myfind ]
+        #綠色
+        myfind=collgre.find({"$or":[{"market_name":{"$regex":myKeyword}},{"addr":{"$regex":myKeyword}}]},{"_id":0,"market_name":1,"addr":1,"Latitude": 1,"Lontitude": 1,"context":1,"Tel":1})
+        resultGre+=[ {**item } for item in myfind ]
+        #免費
+        myfind=collfre.find({"$or":[{"market_name":{"$regex":myKeyword}},{"addr":{"$regex":myKeyword}}]},{"_id":0,"market_name":1,"addr":1,"Latitude": 1,"Lontitude": 1,"context":1,"Tel":1})
+        resultFre+=[ {**item } for item in myfind ]
+
+    
+    return resultPig,resultGre,resultFre #接收資料時，用a,b,c就可以分別抓到資料

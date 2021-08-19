@@ -3,7 +3,6 @@ from pymongo import message
 import dbController as db
 import bcrypt
 from datetime import timedelta
-#from django.utils.safestring import mark_safe
 
 app = Flask(__name__)
 mat = db.selectMaterial()
@@ -21,14 +20,12 @@ def index():
 @app.route('/map')
 def maptest():
     if 'userID' in session:
-        #data= mark_safe(db.selectPigdata())
         data= db.selectPigdata()
         greenData=db.selectGreenData()
         freeData=db.selectFreeData()
         api = mat['map_api']
         return render_template(('map.html'), uid = session['userID'],data=data, api=api, greenData=greenData, freeData=freeData)
 
-    #data= mark_safe(db.selectPigdata())
     data= db.selectPigdata()
     greenData=db.selectGreenData()
     freeData=db.selectFreeData()
