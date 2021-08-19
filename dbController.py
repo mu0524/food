@@ -41,6 +41,11 @@ def insertUser(userID,email,pwd):
     colluser.insert_one({'userID': userID, 'email':email, 'pwd':pwd})
     return True
 
+#更新密碼
+def updateUser(email,pwd):
+    colluser.update_one({'email': email},{"$set": { 'pwd': pwd }})
+    return True
+
 def selectMaterial():
     result = collmat.find_one()
     return result

@@ -52,10 +52,24 @@ def user():
     if request.method == 'POST':
         if request.values['logout-btn'] == 'logout': #html頁面login按鈕 按鈕name的value等於login
             session.clear()
-            flash('等您下次回來')
             return redirect(url_for('index')) #跳轉至index function(前往index頁面)
     
     return render_template('user.html',uid = session['userID'])
+
+@app.route('/changepwd', methods=["GET", "POST"])
+def changepwd():
+    if request.method == 'POST':
+        newpwd = request.form['pwd_input']
+        email = session['email']
+        if newpwd == '':
+            flash('請輸入密碼','warning')
+            return redirect(url_for('index'))
+        else:
+            hashpass = bcrypt.hashpw(newpwd.encode('utf-8'), bcrypt.gensalt())
+            db.updateUser(email,hashpass)
+            flash('更改密碼成功','success')
+            return redirect(url_for('index'))
+
 
 @app.route('/login', methods=['POST','GET']) #有表單(form)就需要methods這一個
 def login():
