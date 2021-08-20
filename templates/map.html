@@ -126,12 +126,6 @@
 			[MarkerType.free]: [],
 		}
 
-		//地標圖片，圖片88 我頭會痛死要重調惹QAQ
-		const icons = {
-			[MarkerType.pig]: "./static/images/pig.png",
-			[MarkerType.green]:"./static/images/green.png",
-			[MarkerType.free]:"./static/images/free.png",
-		};
 
 		let map = null;
 
@@ -154,6 +148,13 @@
 		function showMarkers(markerType) {
 			let data = dataMap[markerType];
 			let infoWindow = new google.maps.InfoWindow();
+
+			//地標圖片，圖片88 我頭會痛死要重調惹QAQ
+			const icons = {
+				[MarkerType.pig]: "./static/images/map/pig.svg",
+				[MarkerType.green]:"./static/images/map/green.svg",
+				[MarkerType.free]:"./static/images/map/free.svg",
+			};
 			
 			 // 若該markers不存在，設置
 			if (markersMap[markerType].length == 0) {
