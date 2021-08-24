@@ -51,13 +51,13 @@ def selectMaterial():
     result = collmat.find_one()
     return result
 
-def myfind():
+def myfind(keyWord):
     resultPig=[]
     resultGre=[]
     resultFre=[]
 
     #myKeyword是要搜尋的字元，到時候要POST進來
-    myKeyword=""
+    myKeyword=keyWord
 
     if "台" in myKeyword:
         myKeyword2=myKeyword.replace("台","臺")

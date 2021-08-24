@@ -17,15 +17,25 @@ def index():
     else:
         return render_template('index.html') #return url string 中回傳index.html 做為模板
 
-@app.route('/map')
+@app.route('/map',methods=['POST','GET'])
 def maptest():
     if 'userID' in session:
+        if request.method =='POST':
+            keyWord=request.form['search_addr']
+            data,greenData,freeData=db.myfind(keyWord)
+            api = mat['map_api']
+            return render_template('map.html', data=data, api=api, greenData=greenData, freeData=freeData)       
         data= db.selectPigdata()
         greenData=db.selectGreenData()
         freeData=db.selectFreeData()
         api = mat['map_api']
         return render_template(('map.html'), uid = session['userID'],data=data, api=api, greenData=greenData, freeData=freeData)
 
+    if request.method =='POST':
+        keyWord=request.form['search_addr']
+        data,greenData,freeData=db.myfind(keyWord)
+        api = mat['map_api']
+        return render_template('map.html', data=data, api=api, greenData=greenData, freeData=freeData)
     data= db.selectPigdata()
     greenData=db.selectGreenData()
     freeData=db.selectFreeData()
