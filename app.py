@@ -36,7 +36,9 @@ def maptest():
 def news():
     if 'userID' in session:
         return render_template(('news.html'), uid = session['userID'])
-    return render_template('news.html') 
+    
+    etoday = db.selectNews_etoday()
+    return render_template('news.html', etoday=etoday) 
 
 @app.route('/greenresturant')
 def green():

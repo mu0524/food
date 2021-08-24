@@ -12,6 +12,7 @@ collfre = db.free
 collgre = db.green
 colluser = db.User
 collmat = db.material
+collnews_e = db.news_etoday
 
 #coll.stats #確認是否連線
 
@@ -89,3 +90,8 @@ def myfind():
 
     
     return resultPig,resultGre,resultFre #接收資料時，用a,b,c就可以分別抓到資料
+
+def selectNews_etoday():
+    result = collnews_e.find()  #抓資料
+    result = [ {**item, **{"_id": str(item["_id"])} } for item in result ] #處理 objectId 轉string
+    return result
