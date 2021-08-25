@@ -200,8 +200,9 @@
 								<p class="map_content_title">' + el['market_name']+'</p>\
 								<p>' + el['Tel'] + '</p>\
 								<p>地址：'+ el['addr'] + '</p>\
-								<p>'+ el['context'] + '</p>\
-								<input type="checkbox" id="checkbox" />\
+								<p>'+ el['context'] + '</p>'
+								+ // {% if uid %} +
+								'<input type="checkbox" id="checkbox" />\
 								<label for="checkbox">\
 								<svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">\
 									<g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">\
@@ -245,8 +246,9 @@
 									</g>\
 								</svg>\
 								</label>\
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carouselModal1">評價</button>\
-							</div>'
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carouselModal1">評價</button>'
+								+ //{% endif%} +
+							'</div>'
 						});
 						infoWindow.open(map, marker);
 					})

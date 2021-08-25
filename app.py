@@ -19,28 +19,24 @@ def index():
 
 @app.route('/map',methods=['POST','GET'])
 def maptest():
-    if 'userID' in session:
-        if request.method =='POST':
-            keyWord=request.form['search_addr']
-            data,greenData,freeData=db.myfind(keyWord)
-            api = mat['map_api']
-            return render_template('map.html', data=data, api=api, greenData=greenData, freeData=freeData)       
-        data= db.selectPigdata()
-        greenData=db.selectGreenData()
-        freeData=db.selectFreeData()
-        api = mat['map_api']
-        return render_template(('map.html'), uid = session['userID'],data=data, api=api, greenData=greenData, freeData=freeData)
-
-    if request.method =='POST':
-        keyWord=request.form['search_addr']
-        data,greenData,freeData=db.myfind(keyWord)
-        api = mat['map_api']
-        return render_template('map.html', data=data, api=api, greenData=greenData, freeData=freeData)
     data= db.selectPigdata()
     greenData=db.selectGreenData()
     freeData=db.selectFreeData()
     api = mat['map_api']
+
+    if 'userID' in session:
+        if request.method =='POST':
+            keyWord=request.form['search_addr']
+            data,greenData,freeData=db.myfind(keyWord)  
+
+        return render_template('map.html', uid = session['userID'],data=data, api=api, greenData=greenData, freeData=freeData)
+
+    if request.method =='POST':
+        keyWord=request.form['search_addr']
+        data,greenData,freeData=db.myfind(keyWord)
+    
     return render_template('map.html', data=data, api=api, greenData=greenData, freeData=freeData) #小小測試東西有沒有傳到網頁
+
 
 @app.route('/news')
 def news():
@@ -64,6 +60,7 @@ def user():
     if request.method == 'POST':
         if request.values['logout-btn'] == 'logout': #html頁面login按鈕 按鈕name的value等於login
             session.clear()
+            flash('您已登出','success')
             return redirect(url_for('index')) #跳轉至index function(前往index頁面)
     
     return render_template('user.html',uid = session['userID'])
