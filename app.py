@@ -94,12 +94,12 @@ def login():
                 return redirect(url_for('login'))
         else:
             flash('請先進行註冊','warning')
-            return redirect(url_for('signin'))
+            return redirect(url_for('register'))
 
     return render_template('login.html') 
 
-@app.route('/signin', methods=["GET", "POST"])
-def signin():
+@app.route('/register', methods=["GET", "POST"])
+def register():
     if request.method == 'POST':
         email = request.form['email_input']
         users = db.selectUser(email)
@@ -116,9 +116,9 @@ def signin():
                     return redirect(url_for('login'))
         else:
             flash('此email已註冊過，請重新輸入','error')
-            return redirect(url_for('signin'))
+            return redirect(url_for('register'))
             
-    return render_template('signin.html') 
+    return render_template('register.html') 
 
 @app.route('/about')
 def about():

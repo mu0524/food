@@ -10,6 +10,9 @@ html{
 * {
 	margin: 0;
 	padding: 0;
+	/* font-family: Barlow, Noto Sans TC;
+	letter-spacing: 3px;
+	font-size: 12px; */
 }
 
 body {
@@ -26,16 +29,10 @@ body {
 	min-height: 94.2vh;
 }
 
-.login-box {
-	transform: translateY(7vh);
-}
-
-.login-form {
-	background-color: #DFEEED;
-	position: relative;
-	margin: 0 auto;
-	border-radius: 2rem;
-	border: 1px solid #64B3B0;
+p {
+	font-size: .8rem;
+	letter-spacing: .2rem;
+	color: #40577D;
 }
 
 h1 {
@@ -45,13 +42,15 @@ h1 {
 	-webkit-background-clip: text;
 }
 
-p {
-	font-size: .8rem;
-	letter-spacing: .2rem;
-	color: #40577D;
+.register_box {
+	background-color: #DFEEED;
+	position: relative;
+	margin: 0 auto;
+	border-radius: 2rem;
+	border: 1px solid #64B3B0;
 }
 
-.login-btn{
+.register-btn {
 	background-color: #64B3B0;
 	border: 0;
 	border-radius: 1rem;
@@ -72,6 +71,11 @@ p {
 
 .btn-primary.focus, .btn-primary:focus {
     box-shadow: 0 0 0 .2rem #64B3B050;
+}
+
+.col-form-label {
+	font-family: Calibri , 'Noto Sans TC', cursive;
+	color: #40577D;
 }
 
 .form-control {
@@ -106,7 +110,9 @@ a:hover {
     text-decoration: underline;
 }
 
-
+.register {
+	transform: translateY(7vh);
+}
 
 
 /* 卷軸底色 */

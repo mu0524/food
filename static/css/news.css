@@ -26,6 +26,7 @@ body {
 	border-right: 10px solid #f4fff8;
 	font-family: Calibri , 'Noto Sans TC', cursive;
 	letter-spacing: .1rem;
+	min-height: 94.2vh;
 }
 
 .card-body h5 {
