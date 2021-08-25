@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/news.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/menu.css">
 	<script src="../static/js/jquery-3.6.0.js"></script>
-	<script src="../static/js/index.js"></script>
+
 	<script src="../static/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
 	<!-- icons -->
 	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
@@ -36,52 +36,83 @@
 
     <div class="container-fluid">
         <section>
-			{{etoday}}
-			<div class="container">
-				<div class="card-deck">
-					<div class="card">
-						<img src="../static/images/test.png" class="card-img-top">
-						<div class="card-body">
-							<a target="_blank" href="https://udn.com/news/story/7321/5600827"><h5 class="card-title">過期5年茶試喝沒問題改標照賣 業者不滿挨罰提告敗訴</h5></a>
-							<p class="card-text">經營茶葉銷售的華冠國際行銷公司因改標更改保存期限，販售過期5年的茶葉，被台北市政府衛生局開罰36萬元，華冠不服提行政訴訟，台北地方法院根據負責人說法「試喝沒問題就會再貼標」，認定華冠違反食安法，衛生局開罰無誤，判華冠敗訴，可上訴。</p>
-						</div>
-						<div class="card-footer">
-							<small class="text-muted">2021-07-14 13:15</small>
+			<div class="container mb-5">
+				<div class="row text-center">
+					<div class="col-12 col-md-4 p-4">
+						<button id="ettoday_btn" class="btn btn-primary">ETtoday新聞雲</button>
+					</div>
+					<div class="col-12 col-md-4 p-4">
+						<button id="tvbs_btn" class="btn btn-primary">TVBS新聞網</button>
+					</div>
+					<div class="col-12 col-md-4 p-4">
+						<button id="udn_btn" class="btn btn-primary">聯合新聞網</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- ETtoday新聞雲 預設-->
+			<div class="container" id="ettoday" style="display: block;">
+				<div class="row">
+					{% for data in etoday %}
+					<div class="col-12 col-md-4 p-4">
+						<div class="card-deck">
+							<div class="card">
+								<img class="img-fluid new_img" src="{{data.picture_url}}" class="card-img-top">
+								<div class="card-body">
+									<a target="_blank" href="{{data.news_url}}"><h5 class="card-title">{{data.news_title}}</h5></a>
+									<p class="card-text">{{data.introduction}}</p>
+								</div>
+								<div class="card-footer">
+									<small class="text-muted">{{data.date}}</small>
+								</div>
+							</div>
 						</div>
 					</div>
-	
-					<div class="card">
-						<img src="../static/images/test.png" class="card-img-top">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						</div>
-						<div class="card-footer">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</div>
-					</div>
-	
-					<div class="card">
-						<img src="../static/images/test.png" class="card-img-top">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						</div>
-						<div class="card-footer">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</div>
-					</div>
-	
-					<div class="card">
-						<img src="../static/images/test.png" class="card-img-top">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						</div>
-						<div class="card-footer">
-							<small class="text-muted">Last updated 3 mins ago</small>
+					{% endfor %}
+				</div>
+			</div>
+
+			<!-- TVBS新聞網 -->
+			<div class="container" id="tvbs">
+				<div class="row">
+					{% for data in tvbs %}
+					<div class="col-12 col-md-4 p-4">
+						<div class="card-deck">
+							<div class="card">
+								<img class="img-fluid new_img" src="{{data.picture_url}}" class="card-img-top">
+								<div class="card-body">
+									<a target="_blank" href="{{data.news_url}}"><h5 class="card-title">{{data.news_title}}</h5></a>
+									<!-- <p class="card-text">{{data.introduction}}</p> -->
+								</div>
+								<div class="card-footer">
+									<small class="text-muted">{{data.date}}</small>
+								</div>
+							</div>
 						</div>
 					</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<!-- 聯合新聞網-->
+			<div class="container" id="udn">
+				<div class="row">
+					{% for data in udn %}
+					<div class="col-12 col-md-4 p-4">
+						<div class="card-deck">
+							<div class="card">
+								<img class="img-fluid new_img" src="{{data.picture_url}}" class="card-img-top">
+								<div class="card-body">
+									<a target="_blank" href="{{data.news_url}}"><h5 class="card-title">{{data.news_title}}</h5></a>
+									<p class="card-text">{{data.introduction}}</p>
+								</div>
+								<div class="card-footer">
+									<small class="text-muted">{{data.date}}</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
 				</div>
 			</div>
 		</section>
@@ -98,5 +129,7 @@
 			</div>
 		</div>
 	</footer>
+
+	<script src="../static/js/news.js"></script>
 </body>
 </html>

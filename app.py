@@ -44,11 +44,14 @@ def maptest():
 
 @app.route('/news')
 def news():
+    ettoday = db.selectNews_ettoday()
+    tvbs = db.selectNews_tvbs()
+    udn = db.selectNews_udn()
+
     if 'userID' in session:
-        return render_template(('news.html'), uid = session['userID'])
+        return render_template(('news.html'), uid = session['userID'], etoday=ettoday, tvbs=tvbs, udn=udn)
     
-    etoday = db.selectNews_etoday()
-    return render_template('news.html', etoday=etoday) 
+    return render_template('news.html', etoday=ettoday, tvbs=tvbs, udn=udn) 
 
 @app.route('/greenresturant')
 def green():
