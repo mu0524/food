@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>食安餐廳系統</title>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../static/bootstrap-4.2.1-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../static/css/green.css">
-	<link rel="stylesheet" type="text/css" href="../static/css/menu.css">
-	<script src="../static/js/jquery-3.6.0.js"></script>
-	<script src="../static/js/index.js"></script>
-	<script src="../static/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
-	<!-- icons -->
-	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/bootstrap-4.2.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/green.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/menu.css">
+    <script src="../static/js/jquery-3.6.0.js"></script>
+    <script src="../static/js/index.js"></script>
+    <script src="../static/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
+    <!-- icons -->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 </head>
 
 <body id="page-top">
     <nav id="menu" class="navbar navbar-expand-lg fixed-top align-self-start">
-		<a class="navbar-brand" href="#page-top"><img class="w-80 ml-3" src="../static/images/title img.png"></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars" style="color: #fff;"></i></button>
-		<div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
-			<ul class="navbar-nav text-center">
-				<li class="nav-item"><a class="nav-link" href="./index.html">首頁</a></li>
-				<li class="nav-item"><a class="nav-link" href="./map">地圖</a></li>
-				<li class="nav-item"><a class="nav-link" href="./news">食安新聞</a></li>
-				<li class="nav-item"><a class="nav-link active" href="./greenresturant">綠色餐廳</a></li>
-				{% if uid %}
-				<li class="nav-item"><a class="nav-link" href="./userinfo"><i class="fas fa-user"></i></a></li>
-				{% else %}
-				<li class="nav-item"><a class="nav-link" href="./login"><i class="fas fa-user"></i></a></li>
-				{% endif%}
-			</ul>
-		</div>
-	</nav>
+        <a class="navbar-brand" href="#page-top"><img class="w-80 ml-3" src="../static/images/title img.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars"
+                style="color: #fff;"></i></button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+            <ul class="navbar-nav text-center">
+                <li class="nav-item"><a class="nav-link" href="./index.html">首頁</a></li>
+                <li class="nav-item"><a class="nav-link" href="./map">地圖</a></li>
+                <li class="nav-item"><a class="nav-link" href="./news">食安新聞</a></li>
+                <li class="nav-item"><a class="nav-link active" href="./greenresturant">綠色餐廳</a></li>
+                {% if uid %}
+                <li class="nav-item"><a class="nav-link" href="./userinfo"><i class="fas fa-user"></i></a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="./login"><i class="fas fa-user"></i></a></li>
+                {% endif%}
+            </ul>
+        </div>
+    </nav>
 
     <header class="masthead text-center">
-        <div class="masthead-heading mb-1">綠色餐廳</div>
-        <div class="masthead-subheading">Green Restaurant</div>
+        <div class="masthead-heading mb-1">
+            <h1>綠色餐廳介紹</h1>
+        </div>
+        <div class="masthead-subheading">
+            <h5>Green Restaurant</h5>
+        </div>
     </header>
 
     <div class="container-fluid">
@@ -57,8 +64,12 @@
                 <div class="row">
                     <div class="col"></div>
                     <div class="col-md-10">
-                        <p class="text-justify second-text" >環境保護署於108年明令餐飲業者內用飲品不得提供一次用塑膠吸管、內用不得提供免洗餐具，持續擴大管制對象，盡力達到環保的初衷。因全球暖化及人口成長，國際日益重視糧食安全議題，需減少食物浪費。</p>
-                        <p class="text-justify second-text" >因應國內外對於「食」的環保趨勢，響應優先使用國產或有機食材，及響應惜食政策，提供客製化餐點，推動「綠色餐廳計畫」並提供誘因，呼籲各地方環保機關持續輔導轄內餐飲業者加入，共同響應環保，降低環境衝擊。</p>     
+                        <p class="text-justify second-text">
+                            環境保護署於108年明令餐飲業者內用飲品不得提供一次用塑膠吸管、內用不得提供免洗餐具，持續擴大管制對象，盡力達到環保的初衷。因全球暖化及人口成長，國際日益重視糧食安全議題，需減少食物浪費。
+                        </p>
+                        <p class="text-justify second-text">
+                            因應國內外對於「食」的環保趨勢，響應優先使用國產或有機食材，及響應惜食政策，提供客製化餐點，推動「綠色餐廳計畫」並提供誘因，呼籲各地方環保機關持續輔導轄內餐飲業者加入，共同響應環保，降低環境衝擊。
+                        </p>
                     </div>
                     <div class="col"></div>
                 </div>
@@ -117,17 +128,17 @@
                 <h2 class="text-center">定義</h2>
                 <hr>
                 <div class="row text-center">
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4 p-4">
                         <img class="w-50" src="../static/images/green/def-1.png"><br><br>
                         <h5>做好源頭減量</h5>
                         <p>不主動提供一次性產品</p>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4 p-4">
                         <img class="w-50" src="../static/images/green/def-2.png"><br><br>
                         <h5>使用在地食材</h5>
                         <p>優先使用國產食材</p>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4 p-4">
                         <img class="w-50" src="../static/images/green/def-3.png"><br><br>
                         <h5>推行惜食點餐</h5>
                         <p>提供餐點份量調整服務</p>
@@ -141,15 +152,15 @@
                 <h2 class="text-center">目的</h2>
                 <hr>
                 <div class="row text-center">
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4 p-4">
                         <img class="w-50" src="../static/images/green/intent-1.png"><br><br>
                         <p>調整「星級環保餐館」<br>達成源頭減量及惜食目的<br>塑造綠色餐廳形象</p>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4 p-4">
                         <img class="w-50" src="../static/images/green/intent-2.png"><br><br>
                         <p>提供綠色消費回饋<br>提高民眾至綠色餐廳用餐之意願</p>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4 p-4">
                         <img class="w-50" src="../static/images/green/intent-3.png"><br><br>
                         <p>建構綠色經濟循環<br>落實全民綠色生活</p>
                     </div>
@@ -162,23 +173,23 @@
                 <h2 class="text-center">誘因</h2>
                 <hr>
                 <div class="row text-center">
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4 p-4">
                         <img class="w-50" src="../static/images/green/Inducement-1.png"><br><br>
                         <h5>提供綠色消費回饋</h5>
                         <p class="text-justify">消費者至綠色餐廳消費，將提供來店禮、現金折抵、消費回饋等優惠，
                             鼓勵消費者持續至其它綠色餐廳或相關通路落實綠色消費。</p>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4 p-4">
                         <img class="w-50" src="../static/images/green/Inducement-2.png"><br><br>
                         <h5>完善教育宣傳</h5>
                         <p class="text-justify">綠色餐廳之業者，將優先安排當地環保機關輔導申請環保標章，並鼓勵
-                                政府機關優先至綠色餐廳或環保標章餐館消費，鼓勵業者響應環保。</p>
+                            政府機關優先至綠色餐廳或環保標章餐館消費，鼓勵業者響應環保。</p>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4 p-4">
                         <img class="w-50" src="../static/images/green/Inducement-3.png"><br><br>
                         <h5>正向綠色形象</h5>
                         <p class="text-justify">加入綠色餐廳，可提升企業綠色形象，盡企業社會責任，共同為臺灣盡
-                                一份心力</p>
+                            一份心力</p>
                     </div>
                 </div>
             </div>
@@ -194,12 +205,17 @@
                             <img src="../static/images/green/video.png" class="img-responsive">
                         </a>
 
-                        <div id="carouselModal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div id="carouselModal1" class="modal fade" tabindex="-1" role="dialog"
+                            aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-xl">
                                 <div class="modal-content p-4">
-                                    <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                                    <button type="button" class="close text-right" data-dismiss="modal"
+                                        aria-label="Close"><i class="fas fa-times"></i></button>
                                     <div class="mx-auto">
-                                        <iframe width="900" height="550" src="https://www.youtube.com/embed/HvOpcnBpnnw?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <iframe width="900" height="550"
+                                            src="https://www.youtube.com/embed/HvOpcnBpnnw?controls=0" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -210,12 +226,17 @@
                             <img src="../static/images/green/video2.png" class="img-responsive">
                         </a>
 
-                        <div id="carouselModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div id="carouselModal2" class="modal fade" tabindex="-1" role="dialog"
+                            aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-xl">
                                 <div class="modal-content p-4">
-                                    <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                                    <button type="button" class="close text-right" data-dismiss="modal"
+                                        aria-label="Close"><i class="fas fa-times"></i></button>
                                     <div class="mx-auto">
-                                        <iframe width="900" height="550" src="https://www.youtube.com/embed/1iKVNQJaPSk?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <iframe width="900" height="550"
+                                            src="https://www.youtube.com/embed/1iKVNQJaPSk?controls=0" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -227,15 +248,16 @@
     </div>
 
     <footer class="footer py-2">
-		<div class="row align-items-center">
-			<div class="col-lg-4 col text-lg-start"></div>
-			<div class="col-lg-4 col my-3 my-lg-0"></div>
-			<div class="col-lg-4 col text-lg-end text-right">
-				<ul class="footer-link">
-					<li class="nav-item"><a class="nav-link" href="./about">關於我們</a></li>
-				</ul>
-			</div>
-		</div>
-	</footer>
+        <div class="row align-items-center">
+            <div class="col-lg-4 col text-lg-start"></div>
+            <div class="col-lg-4 col my-3 my-lg-0"></div>
+            <div class="col-lg-4 col text-lg-end text-right">
+                <ul class="footer-link">
+                    <li class="nav-item"><a class="nav-link" href="./about">關於我們</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </body>
+
 </html>

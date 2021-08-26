@@ -1,4 +1,3 @@
-/* 底色#d0ebd9 字#4B534C 淡#D1D1C2 酒紅#5A0217 苺粉#B8837E*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Noto+Serif+TC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
 
@@ -10,23 +9,6 @@ html{
 * {
 	margin: 0;
 	padding: 0;
-	/* font-family: Barlow, Noto Sans TC;
-	letter-spacing: 3px;
-	font-size: 12px; */
-}
-
-body {
-	overflow-x: hidden;
-	background-color: #fbfbfb;
-	color: #4B534C;
-}
-
-.container-fluid {
-	border-left: 10px solid #f4fff8;
-	border-right: 10px solid #f4fff8;
-	font-family: Calibri , 'Noto Sans TC', cursive;
-	letter-spacing: .2rem;
-	min-height: 94.2vh;
 }
 
 p {
@@ -51,71 +33,13 @@ h1 {
 }
 
 .register-btn {
-	background-color: #64B3B0;
-	border: 0;
 	border-radius: 1rem;
 	letter-spacing: .5rem;
 }
 
-.btn-primary:hover {
-    color: #fff;
-    background-color: #64B3B080;
-    border: 0;
-}
-
-.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
-    color: #fff;
-    background-color: #64B3B080;
-    border: 0;
-}
-
-.btn-primary.focus, .btn-primary:focus {
-    box-shadow: 0 0 0 .2rem #64B3B050;
-}
-
-.col-form-label {
-	font-family: Calibri , 'Noto Sans TC', cursive;
-	color: #40577D;
-}
-
-.form-control {
-    color: #64B3B0;
-    background-color: #fff;
-    border: 1px solid #64b3b0;
-    border-radius: .5rem;
-}
-
-.form-control:focus {
-    color: #40577D;
-    background-color: #fff;
-    border-color: #64b3b0;
-    outline: 0;
-    box-shadow: 0 0 0 .2rem #64B3B050;
-}
-
-.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-	font-family: Calibri , 'Noto Sans TC', cursive;
-	color: #ddd;
-	letter-spacing: .1rem;
-}
-
-a {
-    color: #B04A69;
-    text-decoration: none;
-    background-color: transparent;
-}
-
-a:hover {
-    color: #B04A69;
-    text-decoration: underline;
-}
 
 .register {
-	transform: translateY(7vh);
+	transform: translateY(5vh);
 }
 
 
-/* 卷軸底色 */
-::-webkit-scrollbar { width:3px; background-color:#fff;}
-/* 卷軸拉的軸軌的顏色 */
-::-webkit-scrollbar-thumb:vertical {background-color:#ddd;}

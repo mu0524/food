@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>食安餐廳系統</title>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../static/bootstrap-4.2.1-dist/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="../static/bootstrap-4.2.1-dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/register.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/menu.css">
 	<script src="../static/js/jquery-3.6.0.js"></script>
@@ -18,9 +19,11 @@
 </head>
 
 <body id="page-top">
-    <nav id="menu" class="navbar navbar-expand-lg fixed-top align-self-start">
+	<nav id="menu" class="navbar navbar-expand-lg fixed-top align-self-start">
 		<a class="navbar-brand" href="#page-top"><img class="w-80 ml-3" src="../static/images/title img.png"></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars" style="color: #fff;"></i></button>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+			aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars"
+				style="color: #fff;"></i></button>
 		<div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
 			<ul class="navbar-nav text-center">
 				<li class="nav-item"><a class="nav-link" href="./index.html">首頁</a></li>
@@ -34,57 +37,57 @@
 
 	<div class="container-fluid">
 		<section>
-            <div class="container text-center register">
-                <h1 class="pb-4 mx-auto">註冊</h1>
+			<div class="container text-center register">
+				<h1 class="pb-4 mx-auto">註冊</h1>
 
 				<div class="row text-center">
-                    <div class="col-12 col-md-4"></div>
-                    <div class="col-12 col-md-4 p-3 register_box">
-                        <form action="./register" method="POST" class="text-center py-4">
+					<div class="col-12 col-md-4"></div>
+					<div class="col-12 col-md-4">
+						<form action="./register" method="POST" class="text-center register_box px-2 pt-5 pb-3">
 							<div class="form-group row mt-4">
-								<label for="UserName" class="col-4 col-form-label col-form-label">User ID</label>
-								<div class="col-8">
-									<input name="uid_input" type="text" class="form-control" id="UserName" value="{{userID}}" placeholder="User ID" aria-label="Username" aria-describedby="basic-addon1">
-							  	</div>
+								<input name="uid_input" type="text" class="form-control w-75 mx-auto" id="UserName"
+									value="{{userID}}" placeholder="暱稱" aria-label="Username"
+									aria-describedby="basic-addon1">
 							</div>
 							<div class="form-group row">
-								<label for="inputEmail3" class="col-4 col-form-label">Email</label>
-								<div class="col-8">
-									<input name="email_input" type="email" class="form-control" id="inputEmail3" placeholder="Email">
-							  	</div>
+								<input name="email_input" type="email" class="form-control w-75 mx-auto" id="inputEmail3"
+									placeholder="Email">
 							</div>
 							<div class="form-group row">
-							  	<label for="inputPassword3" class="col-4 col-form-label">Password</label>
-							  	<div class="col-8">
-									<input name="pwd_input" type="password" class="form-control" id="inputPassword3" placeholder="Password">
-							  	</div>
+								<input name="pwd_input" type="password" class="form-control w-75 mx-auto" id="inputPassword3"
+									placeholder="密碼">
 							</div>
 							<div class="form-group row">
-							  	<div class="col-md text-center mt-3">
-									<button type="submit" id="sigin" class="btn btn-primary register-btn w-100">註冊</button>
-							  	</div>
+								<input name="confirm_pwd_input" type="password" class="form-control w-75 mx-auto" id="inputPassword4"
+									placeholder="密碼確認">
 							</div>
-							<div class="form-group row w-50 mx-auto mt-5">
+							<div class="form-group row">
+								<div class="col-md text-center mt-3 mb-2">
+									<button type="submit" id="sigin"
+										class="btn btn-primary register-btn w-75">註冊</button>
+								</div>
+							</div>
+							<div class="form-group row w-50 mx-auto mt-4">
 								<p>已擁有帳號 ? <a href="./login">登入帳號</a></p>
 							</div>
 						</form>
-                    </div>
-                    <div class="col-12 col-md-4"></div>
-                </div>
-        </section>
+					</div>
+					<div class="col-12 col-md-4"></div>
+				</div>
+		</section>
 	</div>
 
 	{% with messages = get_flashed_messages(with_categories = true) %}
-		{% if messages %}
-			{% for category, message in messages %}
-			<script type = "text/javascript">
-				swal({
-					title: "{{message}}",
-					icon: "{{category}}",
-				});
-			</script>
-			{% endfor %}
-		{% endif %}
+	{% if messages %}
+	{% for category, message in messages %}
+	<script type="text/javascript">
+		swal({
+			title: "{{message}}",
+			icon: "{{category}}",
+		});
+	</script>
+	{% endfor %}
+	{% endif %}
 	{% endwith %}
 
 	<footer class="footer py-2">
@@ -99,4 +102,5 @@
 		</div>
 	</footer>
 </body>
+
 </html>

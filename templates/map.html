@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>食安餐廳系統</title>
 	<meta charset="UTF-8">
@@ -12,17 +13,19 @@
 	<script src="../static/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
 	<!-- icons -->
 	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-    
-    <!--怎麼插github阿-->
-    <script src="../static/js/jquery.csv.min.js"></script>
+
+	<!--怎麼插github阿-->
+	<script src="../static/js/jquery.csv.min.js"></script>
 
 
 </head>
 
 <body id="page-top">
-    <nav id="menu" class="navbar navbar-expand-lg fixed-top align-self-start">
+	<nav id="menu" class="navbar navbar-expand-lg fixed-top align-self-start">
 		<a class="navbar-brand" href="#page-top"><img class="w-80 ml-3" src="../static/images/title img.png"></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars" style="color: #fff;"></i></button>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+			aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars"
+				style="color: #fff;"></i></button>
 		<div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
 			<ul class="navbar-nav text-center">
 				<li class="nav-item"><a class="nav-link" href="./index.html">首頁</a></li>
@@ -40,44 +43,46 @@
 
 	<div class="container-fluid">
 		<section class="first">
-			<div class="row align-items-center">
-				<!-- 搜尋框 -->
-				<div class="form-group col-lg">
-					<form class="form-inline" method="post">
+			<form class="form-group" method="post">
+				<div class="row">
+					<div class="col-9 col-md-4">
 						<!--輸入餐廳框框-->
-						<input name="search_addr" class="form-control w-50" type="text" placeholder="搜尋餐廳">
-						<button type="submit" class="btn btn-primary" name="search">搜尋</button>
-					</form>
-				</div>
-
-				<!--分類框-->
-				<div class="class-restaurant col-lg-5 text-center">
-					<form>
+						<input name="search_addr" class="form-control" type="text" placeholder="搜尋餐廳">
+					</div>
+					<div class="col-3 col-md-1">
+						<button type="submit" class="btn btn-secondary" name="search">搜尋</button>
+					</div>
+					<div class="col-12 col-md-7 mt-2 text-center">
+						<!--分類框-->
 						<input class="mr-2" type="checkbox" id="twpig" checked="true">台灣豬
 						<input class="mr-2" type="checkbox" id="green">綠色餐廳
 						<input class="mr-2" type="checkbox" id="free">自備餐具折扣
-					</form>
+					</div>
 				</div>
-			</div>
-			
+			</form>
+
+
 			<!--地圖-->
 			<div id="map"></div>
 
 			<!-- 評價框 -->
-			<div id="carouselModal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div id="carouselModal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+				aria-hidden="true">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content p-3">
 						<div class="modal-header mb-3">
 							<h5 class="modal-title" id="exampleModalLabel">XX店評價</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
+								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="my-3">
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" placeholder="評價" aria-describedby="button-addon2">
+								<input type="text" class="form-control" placeholder="評價"
+									aria-describedby="button-addon2">
 								<div class="input-group-append">
-									<button class="btn btn-outline-secondary" type="button" id="button-addon2">送出</button>
+									<button class="btn btn-outline-secondary" type="button"
+										id="button-addon2">送出</button>
 								</div>
 							</div>
 						</div>
@@ -89,10 +94,10 @@
 				</div>
 			</div>
 		</section>
-		
+
 	</div>
 
-	
+
 	<footer class="footer py-2">
 		<div class="row align-items-center">
 			<div class="col-lg-4 col text-lg-start"></div>
@@ -105,34 +110,34 @@
 		</div>
 	</footer>
 
-	
 
-	<script >
-		let MarkerType = { "pig":1, "green":2, "free":3, };
+
+	<script>
+		let MarkerType = { "pig": 1, "green": 2, "free": 3, };
 
 		let pig_checkbox = $('#twpig');
 		let green_checkbox = $('#green');
 		let free_checkbox = $('#free');
-		
 
-		let text='{{greenData|tojson()}}'
-		let greenData=JSON.parse(text);
 
-		text='{{freeData|tojson()}}'
-		let freeData=JSON.parse(text);
+		let text = '{{greenData|tojson()}}'
+		let greenData = JSON.parse(text);
 
-		let pigdata=[];
+		text = '{{freeData|tojson()}}'
+		let freeData = JSON.parse(text);
+
+		let pigdata = [];
 
 		// 豬豬資料處理
-		pigdata =[
+		pigdata = [
 			//{% for record in data%}
 			{
-				market_name:'{{record.market_name}}',
-				addr:'{{record.addr}}',
-				Latitude:'{{record.Latitude}}',
+				market_name: '{{record.market_name}}',
+				addr: '{{record.addr}}',
+				Latitude: '{{record.Latitude}}',
 				Lontitude: '{{record.Lontitude}}',
-				context:'{{record.context}}',
-				Tel:'{{record.Tel}}'
+				context: '{{record.context}}',
+				Tel: '{{record.Tel}}'
 			},
 			//{% endfor %}
 		];
@@ -157,8 +162,8 @@
 		//地圖
 		function initMap() {
 			map = new google.maps.Map(document.getElementById("map"), {
-				center: { 
-					lat: 23.695919378044756, 
+				center: {
+					lat: 23.695919378044756,
 					lng: 120.53353474084176
 				},
 				zoom: 16,
@@ -178,11 +183,11 @@
 			//地標圖片，圖片88 我頭會痛死要重調惹QAQ
 			const icons = {
 				[MarkerType.pig]: "./static/images/map/pig.svg",
-				[MarkerType.green]:"./static/images/map/green.svg",
-				[MarkerType.free]:"./static/images/map/free.svg",
+				[MarkerType.green]: "./static/images/map/green.svg",
+				[MarkerType.free]: "./static/images/map/free.svg",
 			};
-			
-			 // 若該markers不存在，設置
+
+			// 若該markers不存在，設置
 			if (markersMap[markerType].length == 0) {
 				for (let el of data) {
 					let marker = new google.maps.Marker({
@@ -194,10 +199,10 @@
 
 					marker.addListener('click', () => {
 						infoWindow.close();
-						infoWindow = new google.maps.InfoWindow({ 
+						infoWindow = new google.maps.InfoWindow({
 							content: '\
 							<div class="map_content text-center p-2">\
-								<p class="map_content_title">' + el['market_name']+'</p>\
+								<p class="map_content_title">' + el['market_name'] + '</p>\
 								<p>' + el['Tel'] + '</p>\
 								<p>地址：'+ el['addr'] + '</p>\
 								<p>'+ el['context'] + '</p>'
@@ -248,7 +253,7 @@
 								</label>\
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carouselModal1">評價</button>'
 								+ //{% endif%} +
-							'</div>'
+								'</div>'
 						});
 						infoWindow.open(map, marker);
 					})
@@ -260,53 +265,55 @@
 			else {
 				let markers = markersMap[markerType];
 				for (let marker of markers)
-				marker.setVisible(true);
+					marker.setVisible(true);
 			}
-			
+
 		}
-		
+
 
 		// 清除地標
 		function clearMarkers(markerType) {
 			let markers = markersMap[markerType];
 			for (let marker of markers)
-			marker.setVisible(false);
+				marker.setVisible(false);
 			// markersMap[markerType].length = 0; 
 			// ↑↑ showMarkers()有用if-else區分markers存在或不存在，
 			// 那清除就不用清掉markers，結省效能
 		}
 
-		pig_checkbox.change(function() {
-			if (this.checked){
+		pig_checkbox.change(function () {
+			if (this.checked) {
 				showMarkers(MarkerType.pig);
 			}
-			else{
+			else {
 				clearMarkers(MarkerType.pig);
 			}
 		});
 
-		green_checkbox.change(function() {
-			if (this.checked){
+		green_checkbox.change(function () {
+			if (this.checked) {
 				showMarkers(MarkerType.green);
 			}
-			else{
+			else {
 				clearMarkers(MarkerType.green);
 			}
 		});
 
-		free_checkbox.change(function() {
-			if (this.checked){
+		free_checkbox.change(function () {
+			if (this.checked) {
 				showMarkers(MarkerType.free);
 			}
-			else{
+			else {
 				clearMarkers(MarkerType.free);
 			}
 		});
-		
+
 	</script>
 
 	<!-- 地圖api API-->
-	<script src="https://maps.googleapis.com/maps/api/js?key={{api}}&callback=initMap&libraries=&v=weekly" async></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key={{api}}&callback=initMap&libraries=&v=weekly"
+		async></script>
 
 </body>
+
 </html>

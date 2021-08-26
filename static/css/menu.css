@@ -1,4 +1,4 @@
-/* 底色#d0ebd9 字#4B534C 淡#D1D1C2 酒紅#5A0217 苺粉#B8837E*/
+/* 底色#d0ebd9 字主#325E5C 字輔#3A6C6A 淡#D1D1C2 酒紅#8F3B55 苺粉#B8837E*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Noto+Serif+TC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
 
@@ -7,9 +7,23 @@
 	padding: 0;
 }
 
+body {
+	overflow-x: hidden;
+	background-color: #fbfbfb;
+	color: #325E5C;
+}
+
+.container-fluid {
+	border-left: 10px solid #d0ebd950;
+	border-right: 10px solid #d0ebd950;
+	font-family: Calibri , 'Noto Sans TC', cursive;
+	letter-spacing: .1rem;
+	min-height: 94.2vh;
+}
+
 #menu {
 	background-color: #d0ebd9;
-	box-shadow: 0px 1px 3px #ccc;
+	box-shadow: 0px 2px 3px #d0ebd970;
 	font-family: 'Barlow', 'Noto Sans TC', cursive;
 }
 
@@ -44,6 +58,8 @@ footer {
 	background-color: #d0ebd9;
 	font-family: 'Barlow', 'Noto Sans TC', cursive;
 	z-index: 999;
+	position: relative;
+	box-shadow: 0px -2px 5px #d0ebd970;
 }
 
 .footer-link {
@@ -82,3 +98,90 @@ section {
 .swal-button:focus {
     box-shadow: none;
 }
+
+/*按鈕*/
+.btn-primary {
+    color: #fff;
+    background-color: #64B3B0;
+    border: 0;
+	letter-spacing: .2rem;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #64B3B080;
+    border: 0;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #64B3B080;
+    border: 0;
+}
+
+.btn-primary.focus, .btn-primary:focus {
+    box-shadow: 0 0 0 .2rem #64B3B050;
+}
+
+.btn-secondary {
+    color: #325E5C;
+    background-color: #D0EBD9;
+    border: 0;
+	letter-spacing: .2rem;
+}
+
+.btn-secondary:hover {
+    color: #325E5C;
+    background-color: #D0EBD980;
+    border: 0;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show > .btn-secondary.dropdown-toggle {
+    color: #325E5C;
+    background-color: #D0EBD980;
+    border: 0;
+}
+
+.btn-secondary.focus, .btn-secondary:focus {
+    box-shadow: 0 0 0 .2rem #D0EBD950;
+}
+
+/*表單*/
+.form-control {
+    color: #3A6C6A;
+    background-color: #fff;
+    border: 1px solid #64b3b0;
+    border-radius: .5rem;
+}
+
+.form-control:focus {
+    color: #3A6C6A;
+    background-color: #fff;
+    border-color: #64b3b0;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem #64B3B050;
+}
+
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	font-family: Calibri , 'Noto Sans TC', cursive;
+	color: #ccc;	
+	letter-spacing: .2rem;
+}
+
+
+/*超連結*/
+a {
+    color: #8F3B55;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    color: #8F3B55;
+    text-decoration: underline;
+}
+
+/* 卷軸底色 */
+::-webkit-scrollbar { width:3px; background-color:#fff;}
+/* 卷軸拉的軸軌的顏色 */
+::-webkit-scrollbar-thumb:vertical {background-color:#ddd;}
