@@ -15,6 +15,7 @@ collmat = db.material
 collnews_e = db.news_etoday
 collnews_t = db.news_tvbs
 collnews_u = db.news_udn
+collcom=db.comment
 
 #coll.stats #確認是否連線
 
@@ -105,5 +106,15 @@ def selectNews_tvbs():
 
 def selectNews_udn():
     result = collnews_u.find()  #抓資料
+    result = [ {**item, **{"_id": str(item["_id"])} } for item in result ] #處理 objectId 轉string
+    return result
+
+#匯入評價
+def insertComment(userName,comment,market_name):
+    collcom.insert_one({'userName': userName, 'comment':comment, 'market_name':market_name})
+
+#用商店名稱搜尋評價
+def marketFindComment(market_name):
+    result =collcom.find_one({"market_name":market_name},{"userName":1,"comment":1})
     result = [ {**item, **{"_id": str(item["_id"])} } for item in result ] #處理 objectId 轉string
     return result
