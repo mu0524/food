@@ -36,6 +36,20 @@ def maptest():
     return render_template('map.html', data=data, api=api, greenData=greenData, freeData=freeData) #小小測試東西有沒有傳到網頁
 
 
+# 評價框
+@app.route('/map_Evaluation',methods=['POST','GET'])
+def mapEvaluation():
+    if request.method =='POST':
+        userName = session['userID']
+        comment = request.form['Evaluation_comment']
+        market_name = request.values['Evaluation_name']
+        print(market_name)
+
+        # flash('評價成功','success')
+
+    return redirect(url_for('maptest'))
+
+
 @app.route('/news')
 def news():
     ettoday = db.selectNews_ettoday()

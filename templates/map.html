@@ -14,6 +14,8 @@
 	<!-- icons -->
 	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 
+	<script src="../static/js/sweetalert.min.js"></script>
+
 	<!--怎麼插github阿-->
 	<script src="../static/js/jquery.csv.min.js"></script>
 
@@ -43,7 +45,7 @@
 
 	<div class="container-fluid">
 		<section class="first">
-			<form class="form-group" method="post">
+			<form action="./map" class="form-group" method="post">
 				<div class="row">
 					<div class="col-9 col-md-4">
 						<!--輸入餐廳框框-->
@@ -70,25 +72,27 @@
 				aria-hidden="true">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content p-3">
-						<div class="modal-header mb-3">
-							<h5 class="modal-title" id="exampleModalLabel">XX店評價</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="my-3">
-							<div class="input-group mb-3">
-								<input type="text" class="form-control" placeholder="評價"
-									aria-describedby="button-addon2">
-								<div class="input-group-append">
-									<button class="btn btn-outline-secondary" type="button"
-										id="button-addon2">送出</button>
+						<form action="./map_Evaluation" method="POST">
+							<div class="modal-header mb-3">
+								<input readonly name="Evaluation_name" id="Evaluation_name" class="w-100" type="text" value="" ></input>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="my-3">
+								<div class="input-group mb-3">
+									<input name="Evaluation_comment" type="text" class="form-control" placeholder="評價"
+										aria-describedby="button-addon2">
+									<div class="input-group-append">
+										<button class="btn btn-outline-secondary" type="submit"
+											id="Evaluation_submit">送出</button>
+									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 						<span class="mb-3" style="color: #ccc;">※以標籤類別評價為優先</span>
 						<div class="mb-3">
-							<span>帳號：</span><span>評價留言</span>
+							<span id="Evaluation_userName">帳號：</span><span id="Evaluation_comment">評價留言</span>
 						</div>
 					</div>
 				</div>
@@ -96,6 +100,19 @@
 		</section>
 
 	</div>
+
+	{% with messages = get_flashed_messages(with_categories = true) %}
+	{% if messages %}
+	{% for category, message in messages %}
+	<script type="text/javascript">
+		swal({
+			title: "{{message}}",
+			icon: "{{category}}",
+		});
+	</script>
+	{% endfor %}
+	{% endif %}
+	{% endwith %}
 
 
 	<footer class="footer py-2">
@@ -194,68 +211,79 @@
 						position: new google.maps.LatLng(el['Latitude'], el['Lontitude']), //位置
 						map: map,
 						title: el['market_name'],
-						icon: icons[markerType], //這邊我先弄豬而已
+						icon: icons[markerType], 
 					});
+
+
+					//infowindow文字，太長ㄌ我才把他弄出來
+					const contentInfo = '\
+					<div class="map_content text-center p-2">\
+						<p class="map_content_title">' + el['market_name'] + '</p>\
+						<p>' + el['Tel'] + '</p>\
+						<p>地址：'+ el['addr'] + '</p>\
+						<p>'+ el['context'] + '</p>'
+						+ // {% if uid %} +
+						'<input type="checkbox" id="fav" />\
+							<label for="fav">\
+							<svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">\
+								<g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">\
+								<path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>\
+								<circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>\
+								\
+								<g id="grp7" opacity="0" transform="translate(7 6)">\
+									<circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2"/>\
+									<circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2"/>\
+								</g>\
+								\
+								<g id="grp6" opacity="0" transform="translate(0 28)">\
+									<circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2"/>\
+									<circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2"/>\
+								</g>\
+								\
+								<g id="grp3" opacity="0" transform="translate(52 28)">\
+									<circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2"/>\
+									<circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2"/>\
+								</g>\
+								\
+								<g id="grp2" opacity="0" transform="translate(44 6)">\
+									<circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2"/>\
+									<circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2"/>\
+								</g>\
+								\
+								<g id="grp5" opacity="0" transform="translate(14 50)">\
+									<circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2"/>\
+									<circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2"/>\
+								</g>\
+								\
+								<g id="grp4" opacity="0" transform="translate(35 50)">\
+									<circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2"/>\
+									<circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2"/>\
+								</g>\
+								\
+								<g id="grp1" opacity="0" transform="translate(24)">\
+									<circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2"/>\
+									<circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2"/>\
+								</g>\
+								</g>\
+							</svg>\
+							</label>\
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carouselModal1">評價</button>'
+						+ //{% endif%} +
+					'</div>';
+
 
 					marker.addListener('click', () => {
 						infoWindow.close();
 						infoWindow = new google.maps.InfoWindow({
-							content: '\
-							<div class="map_content text-center p-2">\
-								<p class="map_content_title">' + el['market_name'] + '</p>\
-								<p>' + el['Tel'] + '</p>\
-								<p>地址：'+ el['addr'] + '</p>\
-								<p>'+ el['context'] + '</p>'
-								+ // {% if uid %} +
-								'<input type="checkbox" id="checkbox" />\
-								<label for="checkbox">\
-								<svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">\
-									<g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">\
-									<path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>\
-									<circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>\
-									\
-									<g id="grp7" opacity="0" transform="translate(7 6)">\
-										<circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2"/>\
-										<circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2"/>\
-									</g>\
-									\
-									<g id="grp6" opacity="0" transform="translate(0 28)">\
-										<circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2"/>\
-										<circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2"/>\
-									</g>\
-									\
-									<g id="grp3" opacity="0" transform="translate(52 28)">\
-										<circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2"/>\
-										<circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2"/>\
-									</g>\
-									\
-									<g id="grp2" opacity="0" transform="translate(44 6)">\
-										<circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2"/>\
-										<circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2"/>\
-									</g>\
-									\
-									<g id="grp5" opacity="0" transform="translate(14 50)">\
-										<circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2"/>\
-										<circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2"/>\
-									</g>\
-									\
-									<g id="grp4" opacity="0" transform="translate(35 50)">\
-										<circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2"/>\
-										<circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2"/>\
-									</g>\
-									\
-									<g id="grp1" opacity="0" transform="translate(24)">\
-										<circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2"/>\
-										<circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2"/>\
-									</g>\
-									</g>\
-								</svg>\
-								</label>\
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carouselModal1">評價</button>'
-								+ //{% endif%} +
-								'</div>'
+							content: contentInfo
 						});
 						infoWindow.open(map, marker);
+
+						// 評價框資料
+						document.getElementById("Evaluation_name").value = el['market_name']
+
+						//之後改評價的帳號
+						document.getElementById("Evaluation_userName").innerText = "{{uid}}"
 					})
 
 					markersMap[markerType].push(marker);
