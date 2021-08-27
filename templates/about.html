@@ -17,18 +17,19 @@
 
 <body id="page-top">
     <nav id="menu" class="navbar navbar-expand-lg fixed-top align-self-start">
-		<a class="navbar-brand" href="#page-top"><img class="w-80 ml-3" src="../static/images/title img.png"></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars" style="color: #fff;"></i></button>
+		<a class="navbar-brand" href="#page-top"><img class="w-100 ml-3" src="../static/images/title img.png"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+			aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
 		<div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
 			<ul class="navbar-nav text-center">
-				<li class="nav-item"><a class="nav-link" href="./index.html">首頁</a></li>
-				<li class="nav-item"><a class="nav-link" href="./map">地圖</a></li>
-				<li class="nav-item"><a class="nav-link" href="./news">食安新聞</a></li>
-				<li class="nav-item"><a class="nav-link" href="./greenresturant">綠色餐廳</a></li>
+				<li class="nav-item mx-2"><a class="nav-link" href="./index.html">首頁</a></li>
+				<li class="nav-item mx-2"><a class="nav-link" href="./map">地圖</a></li>
+				<li class="nav-item mx-2"><a class="nav-link" href="./news">食安新聞</a></li>
+				<li class="nav-item mx-2"><a class="nav-link" href="./greenresturant">綠色餐廳</a></li>
 				{% if uid %}
-				<li class="nav-item"><a class="nav-link" href="./userinfo"><i class="fas fa-user"></i></a></li>
+				<li class="nav-item mx-2"><a class="nav-link" href="./userinfo"><i class="fas fa-user"></i></a></li>
 				{% else %}
-				<li class="nav-item"><a class="nav-link" href="./login"><i class="fas fa-user"></i></a></li>
+				<li class="nav-item mx-2"><a class="nav-link" href="./login">登入</a></li>
 				{% endif%}
 			</ul>
 		</div>
@@ -115,13 +116,13 @@
         </section>
     </div>
 
-    <footer class="footer py-2">
+    <footer class="footer py-2 fixed-bottom">
 		<div class="row align-items-center">
 			<div class="col-lg-4 col text-lg-start"></div>
 			<div class="col-lg-4 col my-3 my-lg-0"></div>
 			<div class="col-lg-4 col text-lg-end text-right">
 				<ul class="footer-link">
-					<li class="nav-item"><a class="nav-link" href="./about">關於我們</a></li>
+					<a class="btn btn-footer" href="./about"><i class="fas fa-info"></i><span>關於我們</span></a>
 				</ul>
 			</div>
 		</div>

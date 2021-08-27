@@ -1,4 +1,4 @@
-/* 底色#d0ebd9 字主#325E5C 字輔#3A6C6A 淡#D1D1C2 酒紅#8F3B55 苺粉#B8837E*/
+/* 淡綠#D0EBD9 字主#3d1f04 綠#33866A 茶褐色#DDC18D / #D2BF7A 淡米#FBF9F1 背景#fbfbfb*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Noto+Serif+TC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
 
@@ -10,20 +10,16 @@
 body {
 	overflow-x: hidden;
 	background-color: #fbfbfb;
-	color: #325E5C;
+	color: #3d1f04;
+    letter-spacing: .2rem;
 }
 
 .container-fluid {
-	border-left: 10px solid #d0ebd950;
-	border-right: 10px solid #d0ebd950;
 	font-family: Calibri , 'Noto Sans TC', cursive;
-	letter-spacing: .1rem;
 	min-height: 94.2vh;
 }
 
 #menu {
-	background-color: #d0ebd9;
-	box-shadow: 0px 2px 3px #d0ebd970;
 	font-family: 'Barlow', 'Noto Sans TC', cursive;
 }
 
@@ -35,31 +31,30 @@ body {
     width: 11rem;
 }
 
+.navbar-nav {
+    border-bottom: 1px solid #eee;
+}
+
 .nav-link {
-	color: #ffffffcc;
-	font-size: .9rem;
+	color: #3d1f04;
+	font-size: 1rem;
 	transition: .5s;
 	letter-spacing: .2rem;
 }
 
 .active {
-    color: #58735b;
+    color: #33866A;
 }
 
 .nav-link:focus, .nav-link:hover {
-	color: #58735b;
+	color: #33866A;
 }
 
-.w-80 {
-    width: 80% !important;
-}
 
 footer {
-	background-color: #d0ebd9;
 	font-family: 'Barlow', 'Noto Sans TC', cursive;
 	z-index: 999;
 	position: relative;
-	box-shadow: 0px -2px 5px #d0ebd970;
 }
 
 .footer-link {
@@ -70,8 +65,47 @@ footer {
 	float: right;
 }
 
+.fa-bars {
+    color: #33866A;
+}
+
+.fa-info {
+    color: #fff;
+}
+
+.btn-footer {
+    background-color: #33866A;
+    border-radius: 2rem;
+    width: 2vw;
+    height: 2vw;
+    transition: .5s;
+}
+
+.btn-footer span{
+    display: none;
+    color: #fff;
+    margin-left: 1rem;
+}
+
+.btn-footer:hover {
+    width: 7vw;
+}
+
+.btn-footer:hover span {
+    display: inline;
+}
+
 section {
-	padding: 9rem 0;
+	padding: 10rem 0;
+}
+
+.circle {
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .swal-title {
