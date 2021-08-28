@@ -43,7 +43,7 @@ body {
 }
 
 .active {
-    color: #33866A;
+    border-bottom: 1px solid #33866A;
 }
 
 .nav-link:focus, .nav-link:hover {
@@ -180,25 +180,44 @@ section {
     box-shadow: 0 0 0 .2rem #D0EBD950;
 }
 
+.btn-outline-secondary {
+    color: #DDC18D;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1.5px solid #DDC18D;
+    background: #FFFFFFB0;
+}
+
+.btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #DDC18D;
+    border: 0;
+    border-bottom: 1.5px solid #DDC18D;
+}
+
+.btn-outline-secondary.focus, .btn-outline-secondary:focus {
+    box-shadow: 0 0 0 .2rem #DDC18D50;
+}
+
 /*表單*/
 .form-control {
-    color: #3A6C6A;
-    background-color: #fff;
-    border: 1px solid #64b3b0;
-    border-radius: .5rem;
+    border: 0;
+    border-bottom: 1.5px solid #DDC18D;
+    border-radius: 0;
+    background: #FFFFFFB0;
+    letter-spacing: .2rem;
 }
 
 .form-control:focus {
-    color: #3A6C6A;
     background-color: #fff;
-    border-color: #64b3b0;
+    border: 0;
     outline: 0;
-    box-shadow: 0 0 0 .2rem #64B3B050;
+    box-shadow: 0 0 0 .2rem #DDC18D50;
 }
 
 .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
 	font-family: Calibri , 'Noto Sans TC', cursive;
-	color: #ccc;	
+	color: #DDC18D;	
 	letter-spacing: .2rem;
 }
 
