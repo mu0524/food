@@ -136,25 +136,25 @@ section {
 /*按鈕*/
 .btn-primary {
     color: #fff;
-    background-color: #64B3B0;
+    background-color: #33866A;
     border: 0;
 	letter-spacing: .2rem;
 }
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #64B3B080;
+    background-color: #33866A80;
     border: 0;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #64B3B080;
+    background-color: #33866A80;
     border: 0;
 }
 
 .btn-primary.focus, .btn-primary:focus {
-    box-shadow: 0 0 0 .2rem #64B3B050;
+    box-shadow: 0 0 0 .2rem #33866A50;
 }
 
 .btn-secondary {
@@ -202,6 +202,12 @@ section {
 	letter-spacing: .2rem;
 }
 
+/*工具提示框*/
+.tooltip > .tooltip-inner {background-color: #F7F7F7; color: #333333;font-family: Calibri , 'Noto Sans TC', cursive;}
+.tooltip.left .tooltip-arrow { background-color: #F7F7F7; }
+.tooltip.top .tooltip-arrow { background-color: #F7F7F7; }
+.tooltip.right .tooltip-arrow { background-color: #F7F7F7; }
+.tooltip.bottom .tooltip-arrow { background-color: #F7F7F7;}
 
 /*超連結*/
 a {

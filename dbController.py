@@ -114,7 +114,7 @@ def insertComment(userName,comment,market_name):
     collcom.insert_one({'userName': userName, 'comment':comment, 'market_name':market_name})
 
 #用商店名稱搜尋評價
-def marketFindComment(market_name):
-    result =collcom.find_one({"market_name":market_name},{"userName":1,"comment":1})
+def marketFindComment():
+    result =collcom.find()
     result = [ {**item, **{"_id": str(item["_id"])} } for item in result ] #處理 objectId 轉string
     return result

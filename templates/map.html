@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/menu.css">
 	<script src="../static/js/jquery-3.6.0.js"></script>
 	<script src="../static/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
+	<script src="../static//bootstrap-4.2.1-dist/js/bootstrap.bundle.min.js"></script>
 	<!-- icons -->
 	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 
@@ -46,14 +47,18 @@
 		<section class="first">
 			<form action="./map" class="form-group" method="post">
 				<div class="row">
-					<div class="col-9 col-md-4">
-						<!--輸入餐廳框框-->
-						<input name="search_addr" class="form-control" type="text" placeholder="搜尋餐廳">
+					<div class="col-12 col-md-7">
+						<div class="input-group">
+							<!--輸入餐廳框框-->
+							<input id="search-addr" name="search_addr" class="form-control" type="text" placeholder="搜尋餐廳" data-placement="bottom">
+							<div class="input-group-append">
+								<button type="submit" class="btn btn-outline-secondary" name="search"><i
+										class="fas fa-search"></i></button>
+							</div>
+						</div>
+
 					</div>
-					<div class="col-3 col-md-1">
-						<button type="submit" class="btn btn-secondary" name="search">搜尋</button>
-					</div>
-					<div class="col-12 col-md-7 mt-2 text-center">
+					<div class="col-12 col-md-5 mt-2 text-right">
 						<!--分類框-->
 						<input class="mr-2" type="checkbox" id="twpig" checked="true">台灣豬
 						<input class="mr-2" type="checkbox" id="green">綠色餐廳
@@ -62,6 +67,9 @@
 				</div>
 			</form>
 
+			<script>
+				$('#search-addr').tooltip({'trigger':'focus', 'title': '搜尋結果blabla'})
+			</script>
 
 			<!--地圖-->
 			<div id="map"></div>
@@ -73,7 +81,8 @@
 					<div class="modal-content p-3">
 						<form action="./map_Evaluation" method="POST">
 							<div class="modal-header mb-3">
-								<input readonly name="Evaluation_name" id="Evaluation_name" class="w-100" type="text" value="" ></input>
+								<input readonly name="Evaluation_name" id="Evaluation_name" class="w-100" type="text"
+									value=""></input>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -91,7 +100,7 @@
 						</form>
 						<span class="mb-3" style="color: #ccc;">※以標籤類別評價為優先</span>
 						<div class="mb-3">
-							<span id="Evaluation_userName">帳號：</span><span id="Evaluation_comment">評價留言</span>
+							<span id="Evaluation_comment">留言</span>
 						</div>
 					</div>
 				</div>
@@ -114,7 +123,7 @@
 	{% endwith %}
 
 
-	<footer class="footer py-2 fixed-bottom">
+	<footer class="footer py-2 fixed-bottom" style="background-color: #fbfbfb;">
 		<div class="row align-items-center">
 			<div class="col-lg-4 col text-lg-start"></div>
 			<div class="col-lg-4 col my-3 my-lg-0"></div>
@@ -135,6 +144,8 @@
 		let green_checkbox = $('#green');
 		let free_checkbox = $('#free');
 
+		let Evaluation_text = '{{Evaluation|tojson()}}'
+		let Evaluation = JSON.parse(Evaluation_text);
 
 		let text = '{{greenData|tojson()}}'
 		let greenData = JSON.parse(text);
@@ -210,7 +221,7 @@
 						position: new google.maps.LatLng(el['Latitude'], el['Lontitude']), //位置
 						map: map,
 						title: el['market_name'],
-						icon: icons[markerType], 
+						icon: icons[markerType],
 					});
 
 
@@ -266,9 +277,9 @@
 								</g>\
 							</svg>\
 							</label>\
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carouselModal1">評價</button>'
+							<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#carouselModal1">評價</button></form>'
 						+ //{% endif%} +
-					'</div>';
+						'</div>';
 
 
 					marker.addListener('click', () => {
@@ -277,12 +288,23 @@
 							content: contentInfo
 						});
 						infoWindow.open(map, marker);
-
+						
 						// 評價框資料
 						document.getElementById("Evaluation_name").value = el['market_name']
 
-						//之後改評價的帳號
-						document.getElementById("Evaluation_userName").innerText = "{{uid}}"
+						let count = 0;
+						for (let cm of Evaluation) {
+							if (cm['market_name'] == el['market_name']) {
+								count = count+1;
+								
+								document.getElementById("Evaluation_comment").innerHTML = cm["userName"] + " ： " + cm["comment"];
+							}
+							else {
+								document.getElementById("Evaluation_comment").innerText = '尚無評價'
+							}
+						}
+
+						
 					})
 
 					markersMap[markerType].push(marker);

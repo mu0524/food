@@ -20,14 +20,16 @@ def maptest():
     data= db.selectPigdata()
     greenData=db.selectGreenData()
     freeData=db.selectFreeData()
+    Evaluation = db.marketFindComment()
     api = mat['map_api']
 
     if 'userID' in session:
+        
         if request.method =='POST':
             keyWord=request.form['search_addr']
-            data,greenData,freeData=db.myfind(keyWord)  
-
-        return render_template('map.html', uid = session['userID'],data=data, api=api, greenData=greenData, freeData=freeData)
+            data,greenData,freeData=db.myfind(keyWord)
+        
+        return render_template('map.html', uid = session['userID'],data=data, api=api, greenData=greenData, freeData=freeData, Evaluation=Evaluation)
 
     if request.method =='POST':
         keyWord=request.form['search_addr']
@@ -36,6 +38,7 @@ def maptest():
     return render_template('map.html', data=data, api=api, greenData=greenData, freeData=freeData) #小小測試東西有沒有傳到網頁
 
 
+#新增評價
 @app.route('/map_Evaluation',methods=['POST','GET'])
 def mapEvaluation():
     if request.method =='POST':
@@ -43,9 +46,10 @@ def mapEvaluation():
         comment = request.form['Evaluation_comment']
         market_name = request.values['Evaluation_name']
         db.insertComment(userName,comment,market_name)
-        #flash('評價成功','success')
+        flash('評價成功','success')
 
     return redirect(url_for('maptest'))
+
 
 
 @app.route('/news')

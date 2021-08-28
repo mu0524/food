@@ -14,6 +14,7 @@ html{
 
 body {
 	height: 100%;
+	background-image: linear-gradient(to bottom, #FBF9F1  0%, #fbfbfb 100%);
 }
 
 #map {
